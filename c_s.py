@@ -24,7 +24,7 @@ class Main_Character():
     self.friends = []
     self.significant_other = None
     self.married =False
-    self.job=[]
+    self.job= None
     
     
     
@@ -132,6 +132,7 @@ class Sibling():
     self.health = random.randint(0,100)
     self.relationship_level = random.randint(0,100)
     self.life = True
+    self.money = 0
     self.realtionship_type = 'Sibling'
   def have_conversation(self):
     conversation= random_choice(conversation_topics)
