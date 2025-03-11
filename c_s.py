@@ -21,6 +21,13 @@ class Main_Character():
     self.attendance = 100
     self.experience=0
     self.properties =[]
+    self.friends = []
+    self.significant_other = None
+    self.married =False
+    self.job=[]
+    
+    
+    
     
 class Npc():
   
@@ -68,9 +75,8 @@ class Npc():
     
   
 
-class Parent(Npc):
+class Parent():
   def __init__(self,player):
-    super().__init__(player)
     self.surname = player.surname
     self.age = random.randint(17,75)
     self.health = random.randint(0,100)
@@ -79,14 +85,74 @@ class Parent(Npc):
       self.realtionship_type_main = 'Father'
     else:
       self.realtionship_type_main = 'Mother'
+  def have_conversation(self):
+    conversation= random_choice(conversation_topics)
+    self.relationship_level += random.randint(-10,10)
+    self.change_relationship()
+    return f'You and {self.name} had a conversation about {conversation[0]}'
+  
+  def check_health(self):
+    health_check(self)
+ 
+  def age_up(self):
+    self.age+=1
+    self.health = round(self.health*(random.uniform(0.6,1.4))) 
+    money += random.randint(100,10000)
+    self.check_health()
+  
+  def ask_for_money(self):
+    if self.relationship_level >60:
+      money = random.randint(1,1000)
+      self.money -= money
+      self.relationship_level += random.randint(-10,1)
+      random_comment = 'insert comment here'
+      self.change_relationship()
+      return money,random_comment
+    else:
+      self.relationship_level += random.randint(-30,1)
+      self.change_relationship()
+      return 0, 'stop asking'
       
-class Sibling(Npc):
+  def change_relationship(self):
+    self.relationship_level=check_values (self.relationship_level,100,0)
+    
+class Sibling():
   def __init__(self,player,max_age):
-    super().__init__(player)
     self.surname = player.surname
     self.age = random.randint(0,max_age)
     self.relationship_level = random.randint(0,100)
     self.realtionship_type_main = 'Sibling'
+  def have_conversation(self):
+    conversation= random_choice(conversation_topics)
+    self.relationship_level += random.randint(-10,10)
+    self.change_relationship()
+    return f'You and {self.name} had a conversation about {conversation[0]}'
+  
+  def check_health(self):
+    health_check(self)
+ 
+  def age_up(self):
+    self.age+=1
+    self.health = round(self.health*(random.uniform(0.6,1.4))) 
+    money += random.randint(100,10000)
+    self.check_health()
+  
+  def ask_for_money(self):
+    if self.relationship_level >60:
+      money = random.randint(1,1000)
+      self.money -= money
+      self.relationship_level += random.randint(-10,1)
+      random_comment = 'insert comment here'
+      self.change_relationship()
+      return money,random_comment
+    else:
+      self.relationship_level += random.randint(-30,1)
+      self.change_relationship()
+      return 0, 'stop asking'
+      
+  def change_relationship(self):
+    self.relationship_level=check_values (self.relationship_level,100,0)
+    
 
 
 
