@@ -21,7 +21,7 @@ class Main_Character():
     self.attendance = 100
     self.experience=0
     self.properties =[]
-    self.friends = []
+    self.relationships = []
     self.significant_other = None
     self.married =False
     self.job= None
@@ -308,6 +308,7 @@ class game():
     self.jobs = generate_jobList()
     self.properties = generate_propertiesList()
     self.npcs=generate_starting_npcs(self.player)
+    self.player.relationships=generate_family(self.player)
     self.actions = 0
     self.history = []
   
@@ -323,7 +324,11 @@ class game():
     self.jobs = generate_jobList()
     self.properties = generate_propertiesList()
     self.npcs=remove_dead_npc(self.npcs)
-
+  def check_actions():
+    if action  >=5:
+      return False
+    else:
+      return True
 class Button():
     def __init__(self,image,x,y,scale):
         width = image.get_width()
@@ -336,8 +341,7 @@ class Button():
         action = False
         #get mouse position
         pos = pygame.mouse.get_pos()
-
-        #check mouseover and clicked conditions
+      
         if self.rect.collidepoint(pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                 self.clicked = True
@@ -383,6 +387,12 @@ def generate_jobList():
 def generate_schools():
   return [School(primary_school_names),School(secondary_school_names),School(univeristy_names)]
 
+def generate_family(player):
+  npc_list = [Parent(player),Parent(player)]
+  if bool(random.getrandbits(1)) == True:
+        sibling1= Sibling(player,10)
+        npc_list.append(sibling1)
+  return npc_list
 #game subprograms
 def sort_and_change(colour):
     for x,y in colours:
