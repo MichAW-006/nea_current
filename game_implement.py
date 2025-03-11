@@ -58,10 +58,12 @@ selected_player_property= None
 relationship_npc = None
 selected_npc = None
 selected_property = None
+
 def draw_progress_bar(x, y, value, max_value, width=200, height=20):
     pygame.draw.rect(screen, BLACK, (x, y, width, height), 2)  # Border
     fill_width = (value / max_value) * (width - 4)  # Fill width based on value
     pygame.draw.rect(screen, Game.colour_2, (x + 2, y + 2, fill_width, height - 4))
+    
 def draw_main_screen():
     screen.fill(WHITE)
 
@@ -104,6 +106,7 @@ def draw_main_screen():
     for event_text in Game.history[-5:]:
         screen.blit(render_text_list(wrap_text(event_text,Game.fonts[1],400),Game.fonts[1],BLACK), (10, y_offset))
         y_offset += 20
+        
 def draw_potential_relationships_screen():
     screen.fill(WHITE)
 
@@ -118,28 +121,26 @@ def draw_potential_relationships_screen():
 
     # Display stats if an NPC is selected
     if selected_npc is not None:
-        display_stats(selected_npc)
+        display_potential_relationships(selected_npc)
 
 
-def draw_potetenial_properties_screen():
+def draw_potential_properties_screen():
     screen.fill(WHITE)
 
     pygame.draw.rect(screen, Game.colour_1, header_rect)
     back_button.draw(screen)
 
     i=0
-    for npc in property_buttons:
-        pygame.draw.rect(screen, Game.colour_1, npc)
-        screen.blit(Game.fonts[0].render(f"{Game.properties[i].type}  ", True, BLACK), (npc.x + 10, npc.y + 10))
+    for property in property_buttons:
+        pygame.draw.rect(screen, Game.colour_1, property)
+        screen.blit(Game.fonts[0].render(f"{Game.properties[i].type}  ", True, BLACK), (property.x + 10, property.y + 10))
         i+=1
 
     
-    
-    # Display stats if an NPC is selected
     if selected_property is not None:
-        display_stats(selected_property)
+        display_potential_properties(selected_property)
 
-def draw_jobs_screen():
+def draw_potential_jobs_screen():
     screen.fill(WHITE)
 
     pygame.draw.rect(screen, Game.colour_1, header_rect)
@@ -155,7 +156,7 @@ def draw_jobs_screen():
     
     # Display stats if an NPC is selected
     if selected_property is not None:
-        display_stats(selected_property)
+        display_potential_jobs(selected_property)
 
 
 
