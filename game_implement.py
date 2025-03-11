@@ -15,21 +15,33 @@ choice_rect = pygame.Rect(400, 250, 420, 230)
 history_rect = pygame.Rect(0, 50, 400, 350)
 options_rect = pygame.Rect(0, 400, 400, 200)
 settings_rect = pygame.Rect(400, 500, 400, 100)
+blank_rect = pygame.Rect(400, 50, 400, 550)
 
+#Game property buttons
 buy_button = pygame.Rect(400, 400, 300, 50)
 mortgage_button = pygame.Rect(400, 500, 300, 50)
+property_buttons = [pygame.Rect(20, 80 + (i * 50), 300, 40) for i in range(len(Game.properties))]
+
+#player property buttons
+player_property_buttons = [pygame.Rect(20, 80 + (i * 50), 300, 40) for i in range(len(Game.player.properties))]
 sell_button = pygame.Rect(400, 300, 300, 50)
+
+#game npc buttons
 ask_to_be_friends_button = pygame.Rect(500, 400, 200, 50)
 ask_to_date_button = pygame.Rect(500, 300, 200, 50)
+npc_buttons = [pygame.Rect(20, 80 + (i * 50), 300, 40) for i in range(len(Game.npcs))]
+
+
+#player relationship buttons
 conversate_button = pygame.Rect(500, 400, 200, 50)
 make_new_relationships_button = pygame.Rect(500, 200, 200, 50)
 start_fight_button = pygame.Rect(500, 500, 200, 50)
 ask_for_money_button = pygame.Rect(500, 300, 200, 50)
-blank_rect = pygame.Rect(400, 50, 400, 550)
-back_button=Button(pygame.image.load('back.PNG').convert_alpha(),0,0,0.13)
-property_buttons = [pygame.Rect(20, 80 + (i * 50), 300, 40) for i in range(len(Game.properties))]
-npc_buttons = [pygame.Rect(20, 80 + (i * 50), 300, 40) for i in range(len(Game.npcs))]
 relationship_buttons = [pygame.Rect(20, 80 + (i * 50), 300, 40) for i in range(len(Game.player.relationships))]
+
+back_button=Button(pygame.image.load('back.PNG').convert_alpha(),0,0,0.13)
+
+#main screen buttons
 choice_buttons = [
 pygame.Rect(420, 310, 360, 40),
 pygame.Rect(420, 360, 360, 40),
@@ -38,9 +50,11 @@ age_up_button = Button(pygame.image.load('age_up.png').convert_alpha(),140,395,0
 school_button = Button(pygame.image.load('school.png').convert_alpha(),10,450,0.3)
 property_button = Button(pygame.image.load('property.png').convert_alpha(),140,495,0.27)
 relationships_button = Button(pygame.image.load('relationships.png').convert_alpha(),250,450,0.3)
+
 choices =show_choices_and_option(baby_choices)
 
-
+selected_job = None
+selected_player_property= None
 relationship_npc = None
 selected_npc = None
 selected_property = None
