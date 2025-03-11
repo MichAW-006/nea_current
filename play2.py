@@ -29,7 +29,7 @@ def draw_relationships_screen():
     i=0
     for npc in npc_buttons:
         pygame.draw.rect(screen, Game.colour_1, npc)
-        screen.blit(Game.fonts[0].render(f"{Game.npcs[i].name} {Game.npcs[i].surname} ", True, BLACK), (npc.x + 10, npc.y + 10))
+        screen.blit(Game.fonts[0].render(f"{Game.npcs.relationships[i].name} {Game.player.relationships[i].surname} ", True, BLACK), (npc.x + 10, npc.y + 10))
         i+=1
 
     # Display stats if an NPC is selected
