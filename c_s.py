@@ -29,8 +29,7 @@ class Main_Character():
     
     
     
-class Npc():
-  
+class Npc(): 
   def __init__(self,player):
     set_values(self)
     self.country = player.country
@@ -39,6 +38,7 @@ class Npc():
     self.health = random.randint(0,100)
     self.relationship_level = random.randint(0,100)
     self.life = True
+    self.married = bool(random.getrandbits(1))
     self.relationship_level = 10
     self.money = random.randint(100,10000)
     
@@ -77,14 +77,20 @@ class Npc():
 
 class Parent():
   def __init__(self,player):
+    set_values(self)
     self.surname = player.surname
+    self.country = player.country
+    self.city = player.city
+    self.married = True
     self.age = random.randint(17,75)
     self.health = random.randint(0,100)
     self.relationship_level = random.randint(0,100)
+    self.money = random.randint(100,10000)
+    self.life = True
     if self.gender == 'male':
-      self.realtionship_type_main = 'Father'
+      self.realtionship_type = 'Father'
     else:
-      self.realtionship_type_main = 'Mother'
+      self.realtionship_type = 'Mother'
   def have_conversation(self):
     conversation= random_choice(conversation_topics)
     self.relationship_level += random.randint(-10,10)
@@ -118,10 +124,15 @@ class Parent():
     
 class Sibling():
   def __init__(self,player,max_age):
+    set_values(self)
     self.surname = player.surname
+    self.country = player.country
+    self.city = player.city
     self.age = random.randint(0,max_age)
+    self.health = random.randint(0,100)
     self.relationship_level = random.randint(0,100)
-    self.realtionship_type_main = 'Sibling'
+    self.life = True
+    self.realtionship_type = 'Sibling'
   def have_conversation(self):
     conversation= random_choice(conversation_topics)
     self.relationship_level += random.randint(-10,10)
@@ -138,13 +149,14 @@ class Sibling():
     self.check_health()
   
   def ask_for_money(self):
-    if self.relationship_level >60:
-      money = random.randint(1,1000)
-      self.money -= money
-      self.relationship_level += random.randint(-10,1)
-      random_comment = 'insert comment here'
-      self.change_relationship()
-      return money,random_comment
+    if self.age >= 18
+      if self.relationship_level >60:
+        money = random.randint(1,1000)
+        self.money -= money
+        self.relationship_level += random.randint(-10,1)
+        random_comment = 'insert comment here'
+        self.change_relationship()
+        return money,random_comment
     else:
       self.relationship_level += random.randint(-30,1)
       self.change_relationship()
