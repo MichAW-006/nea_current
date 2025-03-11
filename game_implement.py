@@ -2,11 +2,10 @@ import pygame
 import random
 from c_s import *
 from variables import *
-
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("Tiny Choices")
-
+Game = game()
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 header_rect = pygame.Rect(0, 0, 800, 50)
@@ -57,7 +56,7 @@ school_button = Button(pygame.image.load('school.png').convert_alpha(),10,450,0.
 property_button = Button(pygame.image.load('property.png').convert_alpha(),140,495,0.27)
 relationships_button = Button(pygame.image.load('relationships.png').convert_alpha(),250,450,0.3)
 
-choices =show_choices_and_option(check_available_choices(player))
+choices =show_choices_and_option(check_available_choices(Game.player))
 
 selected_job = None
 selected_player_property= None
@@ -135,6 +134,7 @@ def draw_potential_relationships_screen():
     # Display stats if an NPC is selected
     if selected_npc is not None:
         display_potential_relationships(selected_npc)
+        
 def draw_relationships_screen():
     screen.fill(WHITE)
 
@@ -142,15 +142,14 @@ def draw_relationships_screen():
     back_button.draw(screen)
 
     i=0
-    for npc in npc_buttons:
-        pygame.draw.rect(screen, Game.colour_1, npc)
-        screen.blit(Game.fonts[0].render(f"{Game.player.relationships[i].name} {Game.player.relationships[i].surname} ", True, BLACK), (npc.x + 10, npc.y + 10))
+    for relationship in relationship_buttons:
+        pygame.draw.rect(screen, Game.colour_1, relationship)
+        screen.blit(Game.fonts[0].render(f"{Game.player.relationships[i].name} {Game.player.relationships[i].surname} ", True, BLACK), (relationship.x + 10, relationship.y + 10))
         i+=1
     pygame.draw.rect(screen, Game.colour_1, make_new_relationships_button)
     screen.blit(Game.fonts[0].render("Make New Friends", True, WHITE), (make_new_relationships_button.x+10, make_new_relationships_button.y + 15))
-    # Display stats if an NPC is selected
-    if selected_npc is not None:
-        display_relationships(selected_npc)
+    if selected_relationship is not None:
+        display_relationships(selected_relationship)
 
 def draw_potential_properties_screen():
     screen.fill(WHITE)
@@ -186,7 +185,7 @@ def draw_potential_jobs_screen():
     if selected_property is not None:
         display_potential_jobs(selected_property)
         
-def display_relationships(npc)
+def display_relationships(npc):
     pygame.draw.rect(screen, WHITE, blank_rect)
     screen.blit(Game.fonts[0].render(f"{npc.name}'s Stats", True, BLACK), (550, 20))
     screen.blit(Game.fonts[1].render(f"Age: {npc.age}", True, BLACK), (440, 120))
@@ -203,7 +202,7 @@ def display_relationships(npc)
     if npc.relationship_type == 'Sibling':
       pygame.draw.rect(screen, Game.colour_1, start_fight_button)
       screen.blit(Game.fonts[0].render("Start a fight", True, WHITE), (start_fight_button.x + 10, start_fight_button.y + 15))
-current_screen = "main" 
+current_screen = "start up" 
 # Game loop
 running = True
 while running:
@@ -245,11 +244,11 @@ while running:
                     Game.history.append('')
                     choices =show_choices_and_option(check_available_choices(Game.player))
                 elif choice_buttons[0].collidepoint(mouse_pos):
-                    player.choice_results('a',choices)    
+                    Game.player.choice_results('a',choices)    
                 elif choice_buttons[1].collidepoint(mouse_pos):
-                    player.choice_results('b',choices)
+                    Game.player.choice_results('b',choices)
                 elif choice_buttons[2].collidepoint(mouse_pos):
-                    player.choice_results('c',choices)
+                    Game.player.choice_results('c',choices)
                 elif property_button.rect.collidepoint(mouse_pos):
                     current_screen = "properties"  # Switch to properties screen
                 elif relationships_button.rect.collidepoint(mouse_pos):
@@ -265,7 +264,7 @@ while running:
 
             
             elif current_screen == 'start up':
-                if new_game.rect.collidepoint(mouse_pos):
+                if new_game_button.rect.collidepoint(mouse_pos):
                     current_screen = "main"  # Switch to properties screen
             
 
@@ -285,9 +284,9 @@ while running:
                         if start_fight_button.collidepoint(mouse_pos):
                             selected_relationship.start_fight()    
                             Game.actions+=1 
-                   elif make_new_relationships_button.collidepoint(mouse_pos):
-                       current_screen = "potential relationships"
-                       
+                if make_new_relationships_button.collidepoint(mouse_pos):
+                        draw_potential_relationships_screen()
+                    
             elif current_screen == 'potential relationships':
                 for i,btn in enumerate(npc_buttons):
                     if btn.collidepoint(mouse_pos):
