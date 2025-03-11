@@ -34,12 +34,14 @@ class Npc():
     set_values(self)
     self.country = player.country
     self.city = player.city
-    self.age = random.randint(5,75)
+    self.age = random.randint(player.age-5,player.age+5)
+    self.age = check_values(self.age,player.age+5,0)
     self.health = random.randint(0,100)
     self.relationship_level = random.randint(0,100)
     self.life = True
     self.married = bool(random.getrandbits(1))
     self.relationship_level = 10
+    self.relationship_type = None
     self.money = random.randint(100,10000)
     
   def have_conversation(self):
@@ -50,6 +52,21 @@ class Npc():
   
   def check_health(self):
     health_check(self)
+  def to_date(self):
+    if self.married ==False:
+      if bool(random.getrandbits(1)) == True:
+        self.relationship_type = 'Significant Other'
+        return True
+    else:
+      return False
+
+  def be_friends(self):
+    if bool(random.getrandbits(1)) == True:
+        self.relationship_type = 'Friend'
+        return True
+    else:
+      return False
+        
  
   def age_up(self):
     self.age+=1
@@ -88,9 +105,9 @@ class Parent():
     self.money = random.randint(100,10000)
     self.life = True
     if self.gender == 'male':
-      self.realtionship_type = 'Father'
+      self.relationship_type = 'Father'
     else:
-      self.realtionship_type = 'Mother'
+      self.relationship_type = 'Mother'
   def have_conversation(self):
     conversation= random_choice(conversation_topics)
     self.relationship_level += random.randint(-10,10)
@@ -133,7 +150,7 @@ class Sibling():
     self.relationship_level = random.randint(0,100)
     self.life = True
     self.money = 0
-    self.realtionship_type = 'Sibling'
+    self.relationship_type = 'Sibling'
   def have_conversation(self):
     conversation= random_choice(conversation_topics)
     self.relationship_level += random.randint(-10,10)
@@ -150,7 +167,7 @@ class Sibling():
     self.check_health()
   
   def ask_for_money(self):
-    if self.age >= 18
+    if self.age >= 18:
       if self.relationship_level >60:
         money = random.randint(1,1000)
         self.money -= money
@@ -432,9 +449,11 @@ def set_values(self):
   isFemale = bool(random.getrandbits(1)) # randomly generates the gender of the character
   
   if isFemale is True:
+    self.gender = 'female'
     self.name = random_choice(female_names)
   
   elif not isFemale :
+    self.gender ='male'
     self.name = random_choice(male_names)
           
   self.surname =  random_choice(last_names)
