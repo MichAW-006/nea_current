@@ -298,6 +298,7 @@ class School:
     self.behaviour = 100
     self.grades = 100
     self.name = random_choice(school_prefixes)+' '+random_choice(dict)
+    self.clubs = [random_choice(school_clubs),random_choice(school_clubs),random_choice(school_clubs),random_choice(school_clubs),random_choice(school_clubs)]
       
   def change_attendance(self,player):
     if player.health < 70:
@@ -324,6 +325,7 @@ class game():
     self.fonts= [pygame.font.Font(None, 30), pygame.font.Font(None, 24),pygame.font.Font(None, 18)]
     self.jobs = generate_jobList()
     self.properties = generate_propertiesList()
+    self.schools = generate_schools()
     self.npcs=generate_starting_npcs(self.player)
     self.player.relationships=generate_family(self.player)
     self.actions = 0

@@ -8793,3 +8793,36 @@ conversation_topics = {
     349: "Boxing",
     350: "Wrestling"
 }
+
+school_clubs = {
+    1: "Tennis Club",
+    2: "Chess Club",
+    3: "Debate Club",
+    4: "Robotics Club",
+    5: "Art Club",
+    6: "Music Club",
+    7: "Drama Club",
+    8: "Science Club",
+    9: "Math Club",
+    10: "Book Club",
+    11: "Coding Club",
+    12: "Environmental Club",
+    13: "Photography Club",
+    14: "Dance Club",
+    15: "Film Club",
+    16: "History Club",
+    17: "Language Club",
+    18: "Volunteer Club",
+    19: "Anime Club",
+    20: "Gaming Club",
+    21: "Cooking Club",
+    22: "Yoga Club",
+    23: "Fitness Club",
+    24: "Journalism Club",
+    25: "Poetry Club",
+    26: "Astronomy Club",
+    27: "Model UN",
+    28: "Entrepreneurship Club",
+    29: "Fashion Club",
+    30: "Gardening Club"
+}
