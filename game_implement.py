@@ -121,6 +121,43 @@ def draw_main_screen():
         screen.blit(render_text_list(wrap_text(event_text,Game.fonts[1],400),Game.fonts[1],BLACK), (10, y_offset))
         y_offset += 20
         
+def draw_relationships_screen():
+    screen.fill(WHITE)
+
+    pygame.draw.rect(screen, Game.colour_1, header_rect)
+    back_button.draw(screen)
+
+    i=0
+    for npc in relationship_buttons:
+        pygame.draw.rect(screen, Game.colour_1, npc)
+        screen.blit(Game.fonts[0].render(f"{Game.player.relationships[i].name} {Game.player.relationships[i].surname} ", True, BLACK), (npc.x + 10, npc.y + 10))
+        i+=1
+    pygame.draw.rect(screen, Game.colour_1, make_new_relationships_button)
+    screen.blit(Game.fonts[0].render("Make New Friends", True, WHITE), (make_new_relationships_button.x+10, make_new_relationships_button.y + 15))
+    # Display stats if an NPC is selected
+    if selected_relationship is not None:
+        display_relationships(selected_relationship)
+
+def display_relationships(npc):
+    pygame.draw.rect(screen, WHITE, blank_rect)
+    screen.blit(Game.fonts[0].render(f"{npc.name}'s Stats", True, BLACK), (550, 20))
+    screen.blit(Game.fonts[1].render(f"Age: {npc.age}", True, BLACK), (440, 120))
+    draw_progress_bar(440, 150, npc.health, 100)
+    screen.blit(Game.fonts[1].render("Health", True, BLACK), (655, 150))
+    draw_progress_bar(440, 180, npc.relationship_level, 100)
+    screen.blit(Game.fonts[1].render("Relationship", True, BLACK), (655, 180))
+    screen.blit(Game.fonts[1].render("Money", True, BLACK), (655, 210))
+    draw_progress_bar(440, 210, npc.money/100, 100)
+    pygame.draw.rect(screen, Game.colour_1, conversate_button)
+    screen.blit(Game.fonts[0].render("Have a chat", True, WHITE), (conversate_button.x+10, conversate_button.y + 15))
+    pygame.draw.rect(screen, Game.colour_1, ask_for_money_button)
+    screen.blit(Game.fonts[0].render("Ask for money", True, WHITE), (ask_for_money_button.x + 10, ask_for_money_button.y + 15))
+    if npc.relationship_type == 'Sibling':
+      pygame.draw.rect(screen, Game.colour_1, start_fight_button)
+      screen.blit(Game.fonts[0].render("Start a fight", True, WHITE), (start_fight_button.x + 10, start_fight_button.y + 15))
+
+
+    
 def draw_potential_relationships_screen():
     screen.fill(WHITE)
 
@@ -137,21 +174,18 @@ def draw_potential_relationships_screen():
     if selected_npc is not None:
         display_potential_relationships(selected_npc)
         
-def draw_relationships_screen():
-    screen.fill(WHITE)
+def display_potential_relationships(npc):
+    screen.blit(Game.fonts[0].render(f"{npc.name}'s Stats", True, BLACK), (550, 20))
+    screen.blit(Game.fonts[1].render(f"Age: {npc.age}", True, BLACK), (440, 120))
+    draw_progress_bar(440, 150, npc.health, 100)
+    screen.blit(Game.fonts[1].render("Health", True, BLACK), (655, 150))
+    screen.blit(Game.fonts[1].render("Money", True, BLACK), (655, 180))
+    draw_progress_bar(440, 180, npc.money/100, 100)
+    pygame.draw.rect(screen, Game.colour_1, ask_to_be_friends_button)
+    screen.blit(Game.fonts[0].render("Offer to be friends", True, WHITE), (ask_to_be_friends_button.x+10, ask_to_be_friends_button.y + 15))
+    pygame.draw.rect(screen, Game.colour_1, ask_to_date_button)
+    screen.blit(Game.fonts[0].render("Ask to date", True, WHITE), (ask_to_date_button.x + 10, ask_to_date_button.y + 15))
 
-    pygame.draw.rect(screen, Game.colour_1, header_rect)
-    back_button.draw(screen)
-
-    i=0
-    for relationship in relationship_buttons:
-        pygame.draw.rect(screen, Game.colour_1, relationship)
-        screen.blit(Game.fonts[0].render(f"{Game.player.relationships[i].name} {Game.player.relationships[i].surname} ", True, BLACK), (relationship.x + 10, relationship.y + 10))
-        i+=1
-    pygame.draw.rect(screen, Game.colour_1, make_new_relationships_button)
-    screen.blit(Game.fonts[0].render("Make New Friends", True, WHITE), (make_new_relationships_button.x+10, make_new_relationships_button.y + 15))
-    if selected_relationship is not None:
-        display_relationships(selected_relationship)
 
 def draw_potential_properties_screen():
     screen.fill(WHITE)
@@ -186,23 +220,6 @@ def draw_potential_jobs_screen():
     if selected_property is not None:
         display_potential_jobs(selected_property)
         
-def display_relationships(npc):
-    pygame.draw.rect(screen, WHITE, blank_rect)
-    screen.blit(Game.fonts[0].render(f"{npc.name}'s Stats", True, BLACK), (550, 20))
-    screen.blit(Game.fonts[1].render(f"Age: {npc.age}", True, BLACK), (440, 120))
-    draw_progress_bar(440, 150, npc.health, 100)
-    screen.blit(Game.fonts[1].render("Health", True, BLACK), (655, 150))
-    draw_progress_bar(440, 180, npc.relationship_level, 100)
-    screen.blit(Game.fonts[1].render("Relationship", True, BLACK), (655, 180))
-    screen.blit(Game.fonts[1].render("Money", True, BLACK), (655, 210))
-    draw_progress_bar(440, 210, npc.money/100, 100)
-    pygame.draw.rect(screen, Game.colour_1, conversate_button)
-    screen.blit(Game.fonts[0].render("Have a chat", True, WHITE), (conversate_button.x+10, conversate_button.y + 15))
-    pygame.draw.rect(screen, Game.colour_1, ask_for_money_button)
-    screen.blit(Game.fonts[0].render("Ask for money", True, WHITE), (ask_for_money_button.x + 10, ask_for_money_button.y + 15))
-    if npc.relationship_type == 'Sibling':
-      pygame.draw.rect(screen, Game.colour_1, start_fight_button)
-      screen.blit(Game.fonts[0].render("Start a fight", True, WHITE), (start_fight_button.x + 10, start_fight_button.y + 15))
 
   
 current_screen = "start up" 
@@ -266,7 +283,7 @@ while running:
                 elif settings_rect.collidepoint(mouse_pos):
                     current_screen = "settings"
                     
-            elif current_screen in ["relationships",'potential properties' ,"properties",'school',"potential relationships",'settings','work','job', "potential jobs"]:
+            elif current_screen in ["relationships","properties",'school','work','job']:
                 if back_button.rect.collidepoint(mouse_pos):
                     current_screen = "main"  # Go back to the main screen
 
@@ -277,37 +294,39 @@ while running:
             
 
             
-            elif  current_screen == "relationships":
-                for i,btn in enumerate(relationship_buttons):
-                    if btn.collidepoint(mouse_pos):
-                        selected_relationship = Game.player.relationships[i]
-                        break
-                    if selected_relationship is not None:
-                        if ask_for_money_button.collidepoint(mouse_pos):
-                            selected_relationship.ask_for_money()    
-                            Game.actions+=1                   
-                        if conversate_button.collidepoint(mouse_pos):
-                            selected_relationship.have_conversation()
-                            Game.actions+=1 
-                        if start_fight_button.collidepoint(mouse_pos):
-                            selected_relationship.start_fight()    
-                            Game.actions+=1 
-                        if make_new_relationships_button.collidepoint(mouse_pos):
-                          draw_potential_relationships_screen()
-                    
-            elif current_screen == 'potential relationships':
-                for i,btn in enumerate(npc_buttons):
-                    if btn.collidepoint(mouse_pos):
-                        selected_npc = Game.npcs[i]
-                        break
-                    if selected_npc is not None:
-                        if ask_to_date_button.collidepoint(mouse_pos):
-                            if selected_npc.to_date() is True:
-                              Game.player.relationships.append(selected_npc)
-                            Game.actions+=1                   
-                        if ask_to_be_friends_button.collidepoint(mouse_pos):
-                            if selected_npc.be_friends() is True:
-                              Game.player.relationships.append(selected_npc)
+            elif current_screen == "relationships":
+              for i,btn in enumerate(relationship_buttons):
+                if btn.collidepoint(mouse_pos):
+                  selected_relationship = Game.player.relationships[i]
+                  break
+                if selected_relationship is not None:
+                  if ask_for_money_button.collidepoint(mouse_pos):
+                    selected_relationship.ask_for_money()    
+                    Game.actions+=1                   
+                  if conversate_button.collidepoint(mouse_pos):
+                    selected_relationship.have_conversation()
+                    Game.actions+=1 
+                  if start_fight_button.collidepoint(mouse_pos):
+                    selected_relationship.start_fight()    
+                    Game.actions+=1                   
+              if make_new_relationships_button.collidepoint(mouse_pos):
+                current_screen = "potential relationships"
+        
+            elif current_screen == "potential relationships":
+              if back_button.rect.collidepoint(mouse_pos):
+                current_screen = "relationships"
+              for i,btn in enumerate(npc_buttons):
+                if btn.collidepoint(mouse_pos):
+                  selected_npc = Game.npcs[i]
+                  break
+                if selected_npc is not None:
+                  if ask_to_date_button.collidepoint(mouse_pos):
+                    if selected_npc.to_date() is True:
+                      Game.player.relationships.append(selected_npc)
+                      Game.actions+=1                   
+                  if ask_to_be_friends_button.collidepoint(mouse_pos):
+                    if selected_npc.be_friends() is True:
+                      Game.player.relationships.append(selected_npc)
 
             elif current_screen == 'potential jobs':
                  for i,btn in enumerate(job_buttons):
