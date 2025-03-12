@@ -25,6 +25,24 @@ class Main_Character():
     self.significant_other = None
     self.married =False
     self.job= None
+
+  def choice_results(self,choice,choice_list):
+    if choice == 'a':
+       i=choice_list[4]
+       m=choice_list[5]
+       h=choice_list[6]
+    elif choice == 'b':
+       i=choice_list[7]
+       m=choice_list[8]
+       h=choice_list[9]
+    else:
+       i=choice_list[10]
+       m=choice_list[11]
+       h=choice_list[12]
+    self.intelligence=check_values(self.intelligence+random.randint(i[0],i[1]),100,0) 
+    self.mood=check_values(self.mood+random.randint(m[0],m[1]),100,0) 
+    self.health=check_values(self.health+random.randint(h[0],h[1]),100,0) 
+    health_check(self)
     
     
     
@@ -348,6 +366,8 @@ class game():
       return False
     else:
       return True
+  def random_yearly_actions():
+    increment_npcs(self.npcs,self.player)
 class Button():
     def __init__(self,image,x,y,scale):
         width = image.get_width()
@@ -438,9 +458,12 @@ def check_available_choices(P):
 def random_choice(d):
     random_value= random.choice(list(d.items()))
     return random_value[1]
+    
 def random_choices_for_game(d):
     random_value= random.choice(list(d.items()))
+    del d[random_value[0]]
     return random_value[1]
+    
 def show_choices_and_option(choice_dict):
   choice = random_choices_for_game(choice_dict)
   return([choice[0],choice[1],choice[2],choice[3],choice[4][0][0],choice[4][1][0],choice[4][2][0],choice[4][0][1],choice[4][1][1],choice[4][2][1],choice[4][0][2],choice[4][1][2],choice[4][2][2]])
@@ -477,6 +500,8 @@ def increment_npcs(npc_list,player):
     npc.age+=1
     npc.health=round(npc.health*(random.uniform(0.6,1.4)))
     remove_dead_npc(npc_list,player)
+    
+
     
 def aging_cycle(player):
    if player.age>38:
