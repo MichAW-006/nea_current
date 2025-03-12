@@ -56,7 +56,7 @@ def display_clubs():
         screen.blit(Game.fonts[0].render(f"{Game.schools[f].clubs[i]}", True, BLACK), (club.x + 10, club.y + 10))
         i+=1
 
-
+print('tag')
 
 
 running = True
@@ -75,8 +75,8 @@ while running:
                 if btn.collidepoint(mouse_pos):
                     selected_club = Game.schools[f].clubs[i]
                     break
-                if selected_club is not None:
-                    print(f'joined {selected_club}') 
+            if selected_club is not None:
+              print(f'joined {selected_club}') 
 
     pygame.display.flip()
 
