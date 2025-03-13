@@ -272,28 +272,38 @@ class Property():
   def __init__(self):
     random_value= random.choice(list(property_names.items()))
     x= random_value[0]
-    self.condition = random.randint(0,100)
-    self.price =round(15850000 * (0.6309 ** x) + self.condition, 2 - len(str(int(15850000 * (0.6309 ** x)))))
+    self.condition = random.randint(1,100)
+    self.price =round(15850000 * (0.6309 ** x) + self.condition, 2 - len(str(int(15850000 * (0.6309 ** x))))) *(self.condition/100)
     self.type = random_value[1]
     self.location = str(random.randint(1,270))+' '+random_choice(street_names)+' '+random_choice(location_names)
     self.price_paid = 0
     self.years_left =25
     self.strikes = 3
+    self.bought = False
 
-  def buy(self,mortgage,player):
-    if mortgage is True: 
-      if player.money >= (self.price/10):
-        self.price_paid=player.money-(self.price/10)
-        return True
-      else:
-        return False
-    elif mortgage is False :
-      if player.money >= self.price:
-        self.price_paid = self.price
-        return True 
-      else:
-        return False
-        
+  def buy(self,player,mortgage):
+    if self.bought is False:
+      if mortgage is True: 
+        if player.money >= (self.price/10):
+          self.price_paid=(self.price/10)
+          player.money= player.money- self.price_paid
+          print (f'you bought the {self.type} at {self.location}')
+          self.bought= True
+          return True
+        else:
+          print('not enough money ')
+          return False
+      elif mortgage is False :
+        if player.money >= self.price:
+          self.price_paid = self.price
+          player.money= player.money-self.price_paid
+          print (f'you bought the {self.type} at {self.location}')
+          self.bought = True
+          return True 
+        else:
+          print('not enough money')
+          return False
+          
   def sell(self,player):
     player.money += self.price_paid
     
@@ -412,7 +422,7 @@ def create_job(self,Type):
     self.title='Expert' + ' ' + random_job[0]
 def generate_propertiesList():
   list = []
-  for i in range(0,9):
+  for i in range(0,6):
     list.append(Property())
   return(list)
 def generate_jobList():
