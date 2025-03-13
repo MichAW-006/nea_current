@@ -25,6 +25,7 @@ class Main_Character():
     self.significant_other = None
     self.married =False
     self.job= None
+    self.club =[]
 
   def choice_results(self,choice,choice_list):
     if choice == 'a':
@@ -70,6 +71,7 @@ class Npc():
   
   def check_health(self):
     health_check(self)
+    
   def to_date(self):
     if self.married ==False:
       if bool(random.getrandbits(1)) == True:
@@ -519,7 +521,7 @@ def aging_cycle(player):
      
 #game implementation subprograms
 
-def generate_starting_npcs(player):
+def generate_npcs(player):
     npc_list=[Npc(player),Npc(player),Npc(player),Npc(player),Npc(player),Npc(player),Npc(player),Npc(player),Npc(player)]
       
     return npc_list
