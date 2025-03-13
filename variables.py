@@ -6989,6 +6989,187 @@ baby_choices = {
         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(0, 1), (0, 1), (0, 1)]]]}
 
 
+child_choices = {
+    1: ["It's your first day of school",
+        "Introduce yourself to everyone",  # Good choice
+        "Sit quietly, observe others",  # Neutral choice
+        "Cry and refuse to participate",  # Bad choice
+        [[(3, 7), (3, 7), (0, 2)], [(-2, 2), (-2, 2), (0, 1)], [(-5, -1), (-5, -1), (-1, 0)]]],
+
+    2: ["You found a lost puppy",
+        "Take it home, ask for help",  # Good choice
+        "Ask neighbors if they know it",  # Neutral choice
+        "Ignore it and walk away",  # Bad choice
+        [[(2, 5), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-4, -1), (-1, 0)]]],
+
+    3: ["Your friend is being bullied",
+        "Tell a teacher immediately",  # Good choice
+        "Comfort your friend quietly",  # Neutral choice
+        "Join in the bullying",  # Bad choice
+        [[(3, 6), (2, 5), (0, 1)], [(-2, 2), (-2, 2), (0, 1)], [(-6, -2), (-6, -2), (-1, 0)]]],
+
+    4: ["You got your first allowance",
+        "Save it in your piggy bank",  # Good choice
+        "Buy candy and toys",  # Neutral choice
+        "Spend it all on junk food",  # Bad choice
+        [[(3, 6), (1, 4), (0, 1)], [(-1, 2), (-1, 2), (-1, 0)], [(-4, -1), (-3, 0), (-2, 0)]]],
+
+    5: ["It's Saturday morning",
+        "Help with household chores",  # Good choice
+        "Play outside with friends",  # Neutral choice
+        "Watch TV all day",  # Bad choice
+        [[(2, 5), (2, 5), (2, 4)], [(-1, 2), (-1, 2), (0, 1)], [(-3, 0), (-3, 0), (-2, 0)]]],
+
+    6: ["You got a bad grade on a test",
+        "Ask the teacher for extra help",  # Good choice
+        "Study harder for the next one",  # Neutral choice
+        "Blame the teacher and give up",  # Bad choice
+        [[(3, 6), (2, 5), (0, 1)], [(-2, 2), (-2, 2), (0, 1)], [(-5, -1), (-5, -1), (-1, 0)]]],
+
+    7: ["Your best friend moved away",
+        "Video chat with them regularly",  # Good choice
+        "Make new friends at school",  # Neutral choice
+        "Isolate yourself and cry",  # Bad choice
+        [[(2, 5), (3, 6), (0, 1)], [(-2, 2), (-2, 2), (0, 1)], [(-4, -1), (-5, -1), (-1, 0)]]],
+
+    8: ["You find $5 on the playground",
+        "Turn it in to a teacher",  # Good choice
+        "Ask around if anyone lost it",  # Neutral choice
+        "Keep it for yourself",  # Bad choice
+        [[(2, 5), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-3, 0), (-4, -1), (-1, 0)]]],
+
+    9: ["Your sibling broke your toy",
+        "Forgive them and share",  # Good choice
+        "Ask parents to fix it",  # Neutral choice
+        "Yell at them and cry",  # Bad choice
+        [[(2, 5), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-5, -1), (-1, 0)]]],
+
+    10: ["You don't like dinner",
+         "Try it anyway",  # Good choice
+         "Eat just the parts you like",  # Neutral choice
+         "Refuse to eat and complain",  # Bad choice
+         [[(2, 5), (1, 4), (2, 4)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-4, -1), (-1, 0)]]],
+
+    11: ["Two parties on the same day",
+         "Choose the one who invited you first",  # Good choice
+         "Try to attend both briefly",  # Neutral choice
+         "Skip both and stay home",  # Bad choice
+         [[(2, 5), (2, 5), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-3, 0), (-4, -1), (-1, 0)]]],
+
+    12: ["Your class is doing a talent show",
+         "Perform a song or dance",  # Good choice
+         "Help backstage",  # Neutral choice
+         "Refuse to participate",  # Bad choice
+         [[(3, 6), (3, 6), (0, 1)], [(-2, 2), (-2, 2), (0, 1)], [(-4, -1), (-4, -1), (-1, 0)]]],
+
+    13: ["You see someone cheating",
+         "Tell the teacher",  # Good choice
+         "Talk to the person after class",  # Neutral choice
+         "Join in the cheating",  # Bad choice
+         [[(3, 6), (2, 5), (0, 1)], [(-2, 2), (-2, 2), (0, 1)], [(-5, -1), (-5, -1), (-1, 0)]]],
+
+    14: ["It's raining during recess",
+         "Play board games",  # Good choice
+         "Chat with friends",  # Neutral choice
+         "Complain and sulk",  # Bad choice
+         [[(2, 5), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-3, 0), (-4, -1), (-1, 0)]]],
+
+    15: ["You're assigned a group project",
+         "Take charge as leader",  # Good choice
+         "Do your assigned part quietly",  # Neutral choice
+         "Let others do all the work",  # Bad choice
+         [[(3, 6), (3, 6), (0, 1)], [(-2, 2), (-2, 2), (0, 1)], [(-4, -1), (-4, -1), (-1, 0)]]],
+
+    16: ["Your friend shares a secret",
+         "Keep it to yourself",  # Good choice
+         "Write it in your diary",  # Neutral choice
+         "Tell everyone at school",  # Bad choice
+         [[(2, 5), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-5, -1), (-6, -2), (-1, 0)]]],
+
+    17: ["You have free time after homework",
+         "Practice a hobby",  # Good choice
+         "Help around the house",  # Neutral choice
+         "Play video games all day",  # Bad choice
+         [[(3, 6), (2, 5), (0, 1)], [(-2, 2), (-2, 2), (2, 4)], [(-3, 0), (-3, 0), (-2, 0)]]],
+
+    18: ["Someone new joins your class",
+         "Invite them to sit with you",  # Good choice
+         "Wait for them to approach you",  # Neutral choice
+         "Ignore them completely",  # Bad choice
+         [[(2, 5), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-4, -1), (-1, 0)]]],
+
+    19: ["You forgot your homework",
+         "Explain to the teacher",  # Good choice
+         "Try to complete it during breaks",  # Neutral choice
+         "Lie and say you did it",  # Bad choice
+         [[(2, 5), (2, 5), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-5, -1), (-5, -1), (-1, 0)]]],
+
+    20: ["It's your turn to present",
+         "Excited to share",  # Good choice
+         "Nervous but prepared",  # Neutral choice
+         "Refuse to present",  # Bad choice
+         [[(3, 6), (3, 6), (0, 1)], [(-2, 2), (-2, 2), (0, 1)], [(-4, -1), (-5, -1), (-1, 0)]]],
+
+    21: ["You have a doctor’s appointment",
+         "Brave and curious",  # Good choice
+         "Slightly nervous",  # Neutral choice
+         "Cry and refuse to go",  # Bad choice
+         [[(2, 5), (2, 5), (2, 4)], [(-1, 2), (-1, 2), (1, 3)], [(-4, -1), (-5, -1), (-1, 0)]]],
+
+    22: ["Your friend is sad",
+         "Give them a hug",  # Good choice
+         "Share your snack",  # Neutral choice
+         "Ignore them",  # Bad choice
+         [[(0, 1), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-5, -1), (-1, 0)]]],
+
+    23: ["Your pet is sick",
+         "Ask parents to visit the vet",  # Good choice
+         "Give extra attention",  # Neutral choice
+         "Ignore the pet",  # Bad choice
+         [[(0, 1), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-5, -1), (-2, 0)]]],
+
+    24: ["Your room is messy",
+         "Clean it right away",  # Good choice
+         "Clean just the visible parts",  # Neutral choice
+         "Leave it messy",  # Bad choice
+         [[(2, 5), (2, 5), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-3, 0), (-3, 0), (-1, 0)]]],
+
+    25: ["You're planning your birthday",
+         "Superhero costume party",  # Good choice
+         "Outdoor adventure",  # Neutral choice
+         "Stay home alone",  # Bad choice
+         [[(0, 1), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-4, -1), (-1, 0)]]],
+
+    26: ["You have a nightmare",
+         "Go to parents' room",  # Good choice
+         "Try to fall back asleep",  # Neutral choice
+         "Scream and panic",  # Bad choice
+         [[(0, 1), (2, 5), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-5, -1), (-1, 0)]]],
+
+    27: ["It's picture day at school",
+         "Choose your favorite outfit",  # Good choice
+         "Practice your smile",  # Neutral choice
+         "Refuse to take pictures",  # Bad choice
+         [[(0, 1), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-4, -1), (-1, 0)]]],
+
+    28: ["You get pocket money at a fair",
+         "Save it for later",  # Good choice
+         "Buy food and snacks",  # Neutral choice
+         "Spend it all on games",  # Bad choice
+         [[(3, 6), (1, 4), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-3, 0), (-1, 0)]]],
+
+    29: ["Your pet is sick",
+         "Ask parents to visit the vet",  # Good choice
+         "Give extra attention",  # Neutral choice
+         "Ignore the pet",  # Bad choice
+         [[(0, 1), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-5, -1), (-2, 0)]]],
+
+    30: ["You have a free weekend",
+         "Go on a family outing",  # Good choice
+         "Playdate with friends",  # Neutral choice
+         "Stay in bed all day",  # Bad choice
+         [[(0, 1), (3, 6), (0, 1)], [(-1, 2), (-1, 2), (0, 1)], [(-4, -1), (-4, -1), (-1, 0)]]]
+}
 
 
 teen_choices = {
