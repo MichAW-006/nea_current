@@ -6992,469 +6992,943 @@ baby_choices = {
 
 
 teen_choices = {
-    1: ['Your crush asks you to study together', 'Play it cool and act casual', 'Get super nervous and make excuses', 'Enthusiastically agree and plan it',[[0.2,0.1,0.1],[0.1,-0.2,0.0],[0.3,0.3,0.2]]],
-    2: ['Your parents set a strict curfew', 'Negotiate respectfully for a later time', 'Follow it without question', 'Push the boundaries occasionally',[[0.3,0.1,0.2],[0.1,0.2,0.0],[0.2,-0.2,0.1]]],
-    3: ['You\'re invited to a party where you know there might be alcohol', 'Decline the invitation', 'Go but stay clear of any drinking', 'Tell your parents and ask their advice',[[0.2,0.2,0.3],[0.1,-0.1,0.1],[0.3,0.3,0.2]]],
-    4: ['Your best friend is dating someone you don\'t trust', 'Voice your concerns directly', 'Keep your thoughts to yourself', 'Gather evidence before speaking up',[[0.3,0.1,0.1],[0.1,-0.2,0.0],[0.2,0.2,0.2]]],
-    5: ['You got your first part-time job offer', 'Accept and reduce extracurricular activities', 'Decline to focus on studies', 'Try it out on weekends only',[[0.2,-0.1,0.1],[0.3,0.2,0.2],[0.2,0.1,0.1]]],
-    6: ['Your grades are slipping', 'Create a strict study schedule', 'Ask teachers for extra help', 'Form a study group with friends',[[0.3,0.1,0.2],[0.3,0.2,0.2],[0.2,0.3,0.1]]],
-    7: ['You witness cyberbullying in your group chat', 'Stand up against it publicly', 'Report it to appropriate authorities', 'Message the victim privately with support',[[0.3,0.2,0.2],[0.2,0.1,0.0],[0.2,0.3,0.2]]],
-    8: ['Your younger sibling wants to hang out with you and your friends', 'Include them occasionally', 'Keep social life separate', 'Find alternative activities to do together',[[0.1,0.3,0.1],[0.2,-0.2,0.0],[0.2,0.2,0.1]]],
-    9: ['You\'re feeling overwhelmed with expectations', 'Talk to a school counselor', 'Confide in close friends', 'Take up meditation or exercise',[[0.2,0.3,0.3],[0.1,0.2,0.2],[0.2,0.2,0.3]]],
-    10: ['Your friend group is pressuring you to skip class', 'Firmly decline and go to class', 'Go along with them once', 'Suggest an alternative weekend activity',[[0.3,0.2,0.2],[0.1,-0.3,0.1],[0.2,0.1,0.2]]],
-    11: ['You have the opportunity to study abroad', 'Jump at the chance for adventure', 'Stay in your comfort zone', 'Research thoroughly before deciding',[[0.3,0.3,0.2],[0.1,-0.1,0.0],[0.3,0.2,0.2]]],
-    12: ['Your parents disagree with your career choice', 'Present a detailed plan to convince them', 'Consider their suggestions', 'Seek compromise between both views',[[0.3,0.1,0.1],[0.2,0.2,0.0],[0.2,0.3,0.1]]],
-    13: ['You discover your friend is dealing with depression', 'Encourage them to seek professional help', 'Be there to listen and support', 'Tell a trusted adult',[[0.2,0.2,0.3],[0.1,0.3,0.2],[0.2,0.1,0.2]]],
-    14: ['You\'re asked to speak at graduation', 'Write a deeply personal speech', 'Keep it light and humorous', 'Decline the opportunity',[[0.3,0.2,0.2],[0.2,0.3,0.1],[0.1,-0.2,0.0]]],
-    15: ['Your social media post goes viral unexpectedly', 'Embrace the attention', 'Delete the post', 'Monitor comments carefully',[[0.2,0.3,0.1],[0.1,-0.2,0.1],[0.3,0.1,0.2]]],
-    16: ['You find out your friend group excluded you from an event', 'Confront them directly', 'Distance yourself quietly', 'Ask one close friend what happened',[[0.2,-0.2,0.0],[0.1,-0.3,0.1],[0.3,0.1,0.2]]],
-    17: ['You\'re offered illegal study aids before finals', 'Report it to school authorities', 'Decline and study harder', 'Warn others about the risks',[[0.3,0.2,0.2],[0.2,0.1,0.0],[0.2,0.3,0.2]]],
-    18: ['Your parent starts dating someone new', 'Try to get to know them', 'Keep your distance', 'Express your feelings to your parent',[[0.2,0.3,0.2],[0.1,-0.2,0.0],[0.2,0.2,0.1]]],
+    1: ['Your crush asks you to study together',
+        'Panic and avoid them',       # Neutral choice
+        'Flirt instead of studying',  # Bad choice
+        'Agree and study seriously',  # Good choice
+        [[(-3, 2), (-7, -1), (-10, -4)], [(-2, 4), (-6, 10), (5, 8)], [(-1, 3), (-3, 2), (-5, 0)]]],
 
-    19: ['You witness cheating during an important exam', 
-         'Report it anonymously', 'Ignore it completely', 'Confront the person afterward',
-         [[0.3,0.1,0.1], [0.1,-0.2,0.0], [0.2,0.1,0.1]]],
+    2: ['Your parents set a strict curfew',
+        'Follow it without question', # Neutral choice
+        'Sneak out past curfew',      # Bad choice
+        'Negotiate respectfully',     # Good choice
+        [[(-4, 1), (-9, -3), (-6, 0)], [(-1, 3), (7, 11), (6, 9)], [(-2, 4), (-5, 2), (-3, 1)]]],
 
-    20: ['You\'re struggling with your identity', 
-         'Join support groups', 'Research online privately', 'Talk to trusted friends',
-         [[0.2,0.3,0.2], [0.3,0.1,0.1], [0.2,0.2,0.2]]],
+    3: ['You\'re invited to a party with alcohol',
+        'Go but avoid drinking',      # Neutral choice
+        'Drink to fit in',            # Bad choice
+        'Decline and stay home',      # Good choice
+        [[(-5, 1), (-12, -5), (-10, -3)], [(-2, 6), (8, 12), (7, 10)], [(-3, 2), (-7, 1), (-6, 0)]]],
 
-    21: ['Your close friend comes out to you', 
-         'Show immediate support and acceptance', 'Ask questions to understand better', 'Thank them for trusting you',
-         [[0.2,0.3,0.2], [0.3,0.2,0.1], [0.2,0.3,0.1]]],
+    4: ['Your best friend dates someone untrustworthy',
+        'Stay silent and observe',    # Neutral choice
+        'Spread rumors about them',   # Bad choice
+        'Voice concerns directly',    # Good choice
+        [[(-2, 3), (-11, -4), (-9, -2)], [(3, 7), (7, 10), (6, 8)], [(-1, 4), (-6, 1), (-4, 2)]]],
 
-    22: ['You\'re offered a leadership position in a club', 
-         'Accept the challenge', 'Recommend someone else', 'Share the role with another member',
-         [[0.3,0.2,0.1], [0.1,0.1,0.0], [0.3,0.3,0.1]]],
+    5: ['You get a part-time job offer',
+        'Decline to focus on studies',# Neutral choice
+        'Quit school for the job',    # Bad choice
+        'Accept and balance work',    # Good choice
+        [[(-3, 2), (-10, -3), (-8, -1)], [(2, 5), (8, 13), (7, 11)], [(-1, 4), (-7, 1), (-5, 2)]]],
 
-    23: ['Your family wants to move to a new city', 
-         'Research opportunities in the new place', 'Fight to stay', 'Request to finish the school year first',
-         [[0.3,0.1,0.1], [0.1,-0.2,0.0], [0.2,0.2,0.1]]],
+    6: ['Your grades are slipping',
+        'Ask teachers for help',      # Neutral choice
+        'Ignore it and procrastinate',# Bad choice
+        'Create a study schedule',    # Good choice
+        [[(-2, 3), (-9, -2), (-7, 0)], [(2, 6), (7, 11), (6, 9)], [(-1, 4), (-6, 1), (-4, 2)]]],
 
-    24: ['You discover a talent you never knew you had', 
-         'Take formal lessons', 'Practice in private', 'Share it on social media',
-         [[0.3,0.2,0.1], [0.3,0.1,0.1], [0.2,0.3,0.1]]],
+    7: ['You witness cyberbullying',
+        'Report it anonymously',      # Neutral choice
+        'Ignore it completely',       # Bad choice
+        'Stand up against it',        # Good choice
+        [[(-3, 3), (-11, -4), (-9, -2)], [(1, 5), (8, 13), (7, 11)], [(-2, 4), (-8, 1), (-6, 2)]]],
 
-    25: ['Your friend is making dangerous choices', 
-         'Intervene directly', 'Tell their parents', 'Try to understand their motivations first',
-         [[0.2,0.1,0.1], [0.1,0.2,0.2], [0.3,0.3,0.1]]],
+    8: ['Your sibling wants to hang out',
+        'Keep them away',             # Neutral choice
+        'Mock them in front of friends',# Bad choice
+        'Include them occasionally',  # Good choice
+        [[(-2, 2), (-10, -3), (-8, -1)], [(1, 4), (7, 10), (6, 8)], [(-1, 3), (-7, 1), (-5, 2)]]],
 
-    26: ['You have the chance to skip a grade', 
-         'Take the advancement', 'Stay with your peer group', 'Consider partial advanced classes',
-         [[0.3,0.1,0.1], [0.1,0.2,0.1], [0.3,0.2,0.1]]],
+    9: ['You feel overwhelmed',
+        'Confide in friends',         # Neutral choice
+        'Bottle it up and stress',    # Bad choice
+        'Talk to a counselor',        # Good choice
+        [[(-3, 2), (-12, -5), (-10, -3)], [(0, 4), (8, 12), (7, 10)], [(-2, 4), (-9, 0), (-7, 1)]]],
 
-    27: ['You\'re dealing with your first breakup', 
-         'Focus on self-improvement', 'Lean on friends for support', 'Take time to process alone',
-         [[0.3,0.2,0.2], [0.1,0.3,0.2], [0.2,0.1,0.1]]],
+    10: ['Friends pressure you to skip class',
+         'Skip once to fit in',       # Neutral choice
+         'Skip often to rebel',       # Bad choice
+         'Refuse and go to class',    # Good choice
+         [[(-3, 3), (-11, -4), (-9, -2)], [(1, 6), (7, 11), (6, 9)], [(-2, 4), (-8, 1), (-6, 2)]]],
 
-    28: ['You find something valuable at school', 
-         'Turn it in to lost and found', 'Post about it on social media', 'Ask around your friend group',
-         [[0.3,0.3,0.1], [0.1,-0.1,0.0], [0.2,0.2,0.1]]],
+    11: ['You can study abroad',
+         'Stay in comfort zone',      # Neutral choice
+         'Go without preparation',    # Bad choice
+         'Research and plan carefully',# Good choice
+         [[(-4, 3), (-10, -3), (-8, -1)], [(1, 6), (8, 13), (7, 11)], [(-3, 4), (-7, 1), (-5, 2)]]],
 
-    29: ['You\'re experiencing anxiety about the future', 
-         'Seek professional counseling', 'Create detailed future plans', 'Talk to older siblings or mentors',
-         [[0.2,0.3,0.2], [0.3,0.1,0.1], [0.2,0.2,0.1]]],
+    12: ['Parents disagree with career choice',
+         'Consider their suggestions',# Neutral choice
+         'Rebel and ignore them',     # Bad choice
+         'Present a detailed plan',   # Good choice
+         [[(-3, 3), (-9, -2), (-7, 0)], [(2, 6), (7, 11), (6, 9)], [(-1, 4), (-6, 1), (-4, 2)]]],
 
-    30: ['You have to choose between college prep or vocational training', 
-         'Follow academic route', 'Choose practical skills', 'Try to balance both',
-         [[0.3,0.1,0.2], [0.3,0.2,0.1], [0.2,0.3,0.1]]]}
+    13: ['Friend is dealing with depression',
+         'Listen and support',        # Neutral choice
+         'Ignore their struggles',    # Bad choice
+         'Encourage professional help',# Good choice
+         [[(-3, 3), (-12, -5), (-10, -3)], [(1, 5), (8, 12), (7, 10)], [(-2, 4), (-9, 0), (-7, 1)]]],
+
+    14: ['You\'re asked to speak at graduation',
+         'Keep it light and funny',   # Neutral choice
+         'Refuse and avoid it',       # Bad choice
+         'Write a heartfelt speech',  # Good choice
+         [[(-4, 3), (-10, -3), (-8, -1)], [(2, 6), (7, 10), (6, 8)], [(-3, 4), (-7, 1), (-5, 2)]]],
+
+    15: ['Your social media post goes viral',
+         'Delete the post',           # Neutral choice
+         'Seek more viral fame',      # Bad choice
+         'Monitor comments carefully',# Good choice
+         [[(-3, 3), (-11, -4), (-9, -2)], [(1, 6), (8, 13), (7, 11)], [(-2, 4), (-8, 1), (-6, 2)]]],
+
+    16: ['Friends exclude you from an event',
+         'Distance yourself quietly',  # Neutral choice
+         'Ask what happened calmly',   # Good choice
+         'Confront them angrily',      # Bad choice
+         [[(-7, 1), (-5, 2), (-4, 3)], [(5, 10), (6, 9), (7, 11)], [(-10, -3), (-8, -1), (-6, 0)]]],
+
+    17: ['Offered illegal study aids',
+         'Use them secretly',        # Bad choice
+         'Decline and study harder', # Neutral choice
+         'Report to authorities',    # Good choice
+         [[(-12, -5), (-9, -2), (-8, 0)], [(-9, 0), (-7, 1), (-6, 2)], [(6, 11), (7, 10), (8, 12)]]],
+
+    18: ['Parent starts dating someone new',
+         'Keep your distance',       # Neutral choice
+         'Act hostile towards them', # Bad choice
+         'Get to know them',         # Good choice
+         [[(-7, 1), (-5, 2), (-4, 3)], [(-11, -4), (-9, -2), (-7, 0)], [(5, 10), (6, 9), (7, 11)]]],
+
+    19: ['You witness cheating on an exam',
+         'Ignore it completely',     # Neutral choice
+         'Join in the cheating',     # Bad choice
+         'Report it anonymously',    # Good choice
+         [[(-7, 1), (-5, 2), (-4, 3)], [(-10, -3), (-8, -1), (-6, 0)], [(5, 9), (6, 8), (7, 10)]]],
+
+    20: ['You\'re struggling with identity',
+         'Research privately',       # Neutral choice
+         'Suppress your feelings',   # Bad choice
+         'Join support groups',      # Good choice
+         [[(-9, 0), (-7, 1), (-6, 2)], [(-12, -5), (-10, -3), (-8, -1)], [(6, 11), (7, 10), (8, 12)]]],
+
+    21: ['Friend comes out to you',
+         'Ask questions to understand', # Neutral choice
+         'React negatively',            # Bad choice
+         'Show support and acceptance', # Good choice
+         [[(-8, 1), (-6, 2), (-5, 3)], [(-11, -4), (-9, -2), (-7, 0)], [(5, 10), (6, 9), (7, 11)]]],
+
+    22: ['Offered a leadership position',
+         'Recommend someone else',     # Neutral choice
+         'Take it but do nothing',     # Bad choice
+         'Accept and lead responsibly',# Good choice
+         [[(-7, 1), (-5, 2), (-4, 3)], [(-10, -3), (-8, -1), (-6, 0)], [(5, 9), (6, 8), (7, 10)]]],
+
+    23: ['Family wants to move to a new city',
+         'Fight to stay',            # Neutral choice
+         'Refuse to move',           # Bad choice
+         'Research opportunities',   # Good choice
+         [[(-8, 1), (-6, 2), (-5, 3)], [(-11, -4), (-9, -2), (-7, 0)], [(5, 10), (6, 9), (7, 11)]]],
+
+    24: ['You discover a new talent',
+         'Practice privately',       # Neutral choice
+         'Ignore it completely',     # Bad choice
+         'Take formal lessons',      # Good choice
+         [[(-9, 0), (-7, 1), (-6, 2)], [(-12, -5), (-10, -3), (-8, -1)], [(6, 11), (7, 10), (8, 12)]]],
+
+    25: ['Friend makes dangerous choices',
+         'Tell their parents',       # Neutral choice
+         'Join in their behavior',   # Bad choice
+         'Intervene directly',       # Good choice
+         [[(-8, 1), (-6, 2), (-5, 3)], [(-11, -4), (-9, -2), (-7, 0)], [(5, 10), (6, 9), (7, 11)]]],
+
+    26: ['You can skip a grade',
+         'Stay with your peers',     # Neutral choice
+         'Refuse and fall behind',   # Bad choice
+         'Take the advancement',     # Good choice
+         [[(-7, 1), (-5, 2), (-4, 3)], [(-10, -3), (-8, -1), (-6, 0)], [(5, 9), (6, 8), (7, 10)]]],
+
+    27: ['You go through a breakup',
+         'Lean on friends for support', # Neutral choice
+         'Stalk them on social media',  # Bad choice
+         'Focus on self-improvement',   # Good choice
+         [[(-9, 0), (-7, 1), (-6, 2)], [(-12, -5), (-10, -3), (-8, -1)], [(6, 11), (7, 10), (8, 12)]]],
+
+    28: ['You find something valuable',
+         'Keep it for yourself',         # Neutral choice
+         'Sell it online',               # Bad choice
+         'Turn it in to lost and found', # Good choice
+         [[(-8, 1), (-6, 2), (-5, 3)], [(-11, -4), (-9, -2), (-7, 0)], [(5, 10), (6, 9), (7, 11)]]],
+
+    29: ['You feel anxious about the future',
+         'Make detailed plans',       # Neutral choice
+         'Ignore it and hope it goes away', # Bad choice
+         'Seek professional help',    # Good choice
+         [[(-9, 0), (-7, 1), (-6, 2)], [(-12, -5), (-10, -3), (-8, -1)], [(6, 11), (7, 10), (8, 12)]]],
+
+    30: ['Choose between college or vocational training',
+         'Focus on academics only',   # Neutral choice
+         'Drop out and do nothing',   # Bad choice
+         'Balance both options',      # Good choice
+         [[(-8, 1), (-6, 2), (-5, 3)], [(-11, -4), (-9, -2), (-7, 0)], [(5, 10), (6, 9), (7, 11)]]]
+}
 young_adult_choices = {
     1: ['Your company offers a promotion that requires relocation', 
-        'Accept and embrace the change', 'Negotiate for remote work options', 'Decline to maintain current lifestyle', 
-        [[0.3, 0.1, 0.1], [0.2, 0.2, 0.1], [0.1, -0.1, 0.2]]],
-    
+        'Accept and embrace the change',  # Good choice
+        'Negotiate for remote work options',  # Neutral choice
+        'Decline and stay in comfort zone',  # Bad choice
+        [[(5, 8), (3, 6), (2, 4)], [(2, 4), (-1, 2), (-3, 1)], [(-7, -4), (-5, -2), (-3, 0)]]],
+
     2: ['You’re struggling with work-life balance', 
-        'Set strict boundaries between work and personal time', 'Look for a new job with better hours', 'Hire help for household tasks', 
-        [[0.2, 0.3, 0.2], [0.1, 0.2, 0.3], [0.2, 0.2, 0.1]]],
-    
+        'Set strict boundaries for personal time',  # Good choice
+        'Ignore the issue and push through',  # Bad choice
+        'Quit your job without a backup plan',  # Very bad choice
+        [[(4, 7), (3, 5), (2, 4)], [(-6, -3), (-4, -1), (-2, 0)], [(-8, -5), (-6, -3), (-4, -1)]]],
+
     3: ['Your friends are all getting married', 
-        'Focus on your own timeline', 'Start actively dating', 'Have honest conversations about your future plans', 
-        [[0.3, 0.1, 0.2], [0.1, -0.2, 0.1], [0.2, 0.3, 0.1]]],
-    
+        'Focus on your own goals and timeline',  # Good choice
+        'Feel pressured to rush into a relationship',  # Bad choice
+        'Avoid social events altogether',  # Very bad choice
+        [[(3, 6), (4, 7), (2, 5)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
+
     4: ['You have extra money after bills', 
-        'Invest in retirement accounts', 'Save for a house down payment', 'Travel and experiences', 
-        [[0.3, 0.1, 0.1], [0.2, 0.2, 0.1], [0.1, 0.3, 0.3]]],
-    
+        'Invest in a diversified portfolio',  # Good choice
+        'Spend it on luxury items',  # Bad choice
+        'Gamble it all in hopes of doubling',  # Very bad choice
+        [[(6, 9), (4, 7), (3, 5)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
+
     5: ['Your parents need financial help', 
-        'Create a monthly support plan', 'Help them find additional income sources', 'Offer temporary assistance only', 
-        [[0.2, -0.1, 0.1], [0.3, 0.1, 0.2], [0.1, -0.1, 0.1]]],
-    
+        'Create a sustainable support plan',  # Good choice
+        'Give them all your savings impulsively',  # Bad choice
+        'Refuse to help and cut ties',  # Very bad choice
+        [[(5, 8), (3, 6), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
+
     6: ['You’re feeling stuck in your career', 
-        'Pursue additional certifications', 'Start a side business', 'Switch industries completely', 
-        [[0.3, 0.1, 0.1], [0.2, 0.1, 0.1], [0.2, -0.1, 0.1]]],
-    
+        'Pursue additional certifications',  # Good choice
+        'Complain but take no action',  # Bad choice
+        'Quit without a plan',  # Very bad choice
+        [[(4, 7), (3, 5), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
+
     7: ['Your rent is increasing significantly', 
-        'Look for a new place', 'Get a roommate', 'Negotiate with the landlord', 
-        [[0.2, -0.1, 0.1], [0.1, -0.2, 0.1], [0.3, 0.1, 0.1]]],
-    
+        'Look for a more affordable place',  # Good choice
+        'Take on a second job to cover costs',  # Neutral choice
+        'Ignore the issue and risk eviction',  # Bad choice
+        [[(5, 8), (3, 6), (2, 4)], [(2, 4), (-1, 2), (-3, 1)], [(-7, -4), (-5, -2), (-3, 0)]]],
+
     8: ['You receive a large unexpected tax bill', 
-        'Set up a payment plan', 'Use emergency savings', 'Pick up temporary extra work', 
-        [[0.2, -0.2, 0.1], [0.1, -0.1, 0.1], [0.3, -0.1, 0.1]]],
-    
+        'Set up a payment plan with the IRS',  # Good choice
+        'Use emergency savings to pay it off',  # Neutral choice
+        'Ignore the bill and face penalties',  # Bad choice
+        [[(4, 7), (3, 5), (2, 4)], [(2, 4), (-1, 2), (-3, 1)], [(-6, -3), (-4, -1), (-2, 0)]]],
+
     9: ['Your car needs major repairs', 
-        'Fix it using savings', 'Buy a new vehicle', 'Switch to public transportation', 
-        [[0.1, -0.1, 0.1], [0.2, 0.1, 0.2], [0.3, 0.2, 0.2]]],
-    
+        'Fix it using savings',  # Good choice
+        'Take out a high-interest loan',  # Bad choice
+        'Drive it until it breaks down',  # Very bad choice
+        [[(5, 8), (3, 6), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
+
     10: ['You’re invited to multiple expensive weddings', 
-         'Attend all but give smaller gifts', 'Choose only the closest friends', 'Decline and send thoughtful gifts', 
-         [[0.1, -0.3, 0.1], [0.2, 0.1, 0.2], [0.3, 0.2, 0.1]]],
-    
+         'Choose only the closest friends to attend',  # Good choice
+         'Attend all but go into debt for gifts',  # Bad choice
+         'Decline all and damage relationships',  # Very bad choice
+         [[(4, 7), (3, 5), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
+
     11: ['Your partner wants to move in together', 
-         'Create a detailed financial plan first', 'Suggest a trial period', 'Wait until marriage', 
-         [[0.3, 0.1, 0.1], [0.2, 0.2, 0.2], [0.1, 0.3, 0.1]]],
+         'Create a detailed financial plan first',  # Good choice
+         'Rush into it without discussing finances',  # Bad choice
+         'Refuse and risk the relationship',  # Very bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
 
     12: ['You’re experiencing burnout', 
-         'Take a sabbatical', 'Start therapy', 'Change departments at work', 
-         [[0.1, 0.3, 0.3], [0.2, 0.3, 0.3], [0.3, 0.2, 0.2]]],
+         'Take a sabbatical to recharge',  # Good choice
+         'Push through and risk your health',  # Bad choice
+         'Quit without a backup plan',  # Very bad choice
+         [[(4, 7), (3, 5), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
 
     13: ['Your student loans are overwhelming', 
-         'Research loan forgiveness programs', 'Refinance for better terms', 'Take on additional work to pay them off faster', 
-         [[0.3, -0.1, 0.1], [0.2, -0.1, 0.2], [0.1, -0.2, 0.1]]],
+         'Research loan forgiveness programs',  # Good choice
+         'Ignore the debt and hope it goes away',  # Bad choice
+         'Take on more debt to pay it off',  # Very bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
 
     14: ['You find your dream home but it’s over budget', 
-         'Keep saving and waiting', 'Look for a fixer-upper instead', 'Ask family for down payment help', 
-         [[0.2, -0.1, 0.1], [0.3, 0.1, 0.1], [0.1, -0.2, 0.1]]],
+         'Keep saving and wait for the right time',  # Good choice
+         'Stretch your budget and risk financial strain',  # Bad choice
+         'Give up on homeownership entirely',  # Very bad choice
+         [[(4, 7), (3, 5), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
 
     15: ['Your best friend starts a business and wants investors', 
-         'Invest a small amount you can afford to lose', 'Offer non-financial support', 'Decline to mix friendship and business', 
-         [[0.1, -0.1, 0.1], [0.2, 0.3, 0.2], [0.3, 0.1, 0.2]]],
-
+         'Invest a small amount you can afford to lose',  # Good choice
+         'Invest all your savings to support them',  # Bad choice
+         'Refuse and damage the friendship',  # Very bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
+  
     16: ['You’re offered a high-paying job with poor work-life balance', 
-         'Take it temporarily for experience', 'Negotiate better terms', 'Decline for quality of life', 
-         [[0.3, -0.2, 0.1], [0.2, 0.1, 0.2], [0.1, 0.3, 0.2]]],
+         'Negotiate better terms before accepting',  # Good choice
+         'Accept it and sacrifice personal time',  # Neutral choice
+         'Decline without considering the benefits',  # Bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(2, 4), (-1, 2), (-3, 1)], [(-7, -4), (-5, -2), (-3, 0)]]],
 
     17: ['Your health insurance costs increase', 
-         'Switch to a high-deductible plan', 'Look for a job with better benefits', 'Join a healthcare sharing ministry', 
-         [[0.1, -0.2, 0.1], [0.2, 0.1, 0.3], [0.3, -0.1, 0.2]]],
+         'Shop around for a better plan',  # Good choice
+         'Cut back on other expenses to afford it',  # Neutral choice
+         'Cancel your insurance entirely',  # Bad choice
+         [[(4, 7), (3, 5), (2, 4)], [(2, 4), (-1, 2), (-3, 1)], [(-6, -3), (-4, -1), (-2, 0)]]],
 
     18: ['You inherit a small sum of money', 
-         'Invest in index funds', 'Start a small business', 'Pay off existing debt', 
-         [[0.3, 0.1, 0.1], [0.3, 0.2, 0.1], [0.2, 0.2, 0.2]]],
+         'Invest in a low-risk mutual fund',  # Good choice
+         'Spend it on a luxury vacation',  # Neutral choice
+         'Gamble it all in hopes of winning big',  # Bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
 
     19: ['Your industry is becoming automated', 
-         'Learn programming skills', 'Transition to management', 'Switch to a different field', 
-         [[0.3, 0.1, 0.2], [0.3, 0.2, 0.1], [0.2, 0.3, 0.1]]],
+         'Upskill in a growing field',  # Good choice
+         'Ignore the trend and hope for the best',  # Bad choice
+         'Quit your job without a plan',  # Very bad choice
+         [[(4, 7), (3, 5), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
 
-20: ['You’re feeling isolated working remotely', 
-     'Join professional networking groups', 'Find a co-working space', 'Schedule regular virtual social events', 
-     [[0.2, 0.3, 0.1], [0.1, 0.3, 0.2], [0.2, 0.2, 0.1]]],
+    20: ['You’re feeling isolated working remotely', 
+         'Join a co-working space to meet people',  # Good choice
+         'Complain but take no action',  # Bad choice
+         'Quit your job and isolate further',  # Very bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
 
-21: ['Your partner has different financial habits', 
-     'Maintain separate finances', 'Create a shared budget system', 'Seek financial counseling', 
-     [[0.2, -0.1, 0.1], [0.3, 0.2, 0.1], [0.1, 0.3, 0.2]]],
+    21: ['Your partner has different financial habits', 
+         'Create a shared budget system',  # Good choice
+         'Argue about money constantly',  # Bad choice
+         'Hide your finances and create distrust',  # Very bad choice
+         [[(4, 7), (3, 5), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
 
-22: ['You’re offered a startup opportunity', 
-     'Take the risk with savings backup', 'Keep it as a side project first', 'Stay with stable employment', 
-     [[0.3, -0.2, 0.1], [0.2, 0.1, 0.2], [0.1, 0.3, 0.1]]],
+    22: ['You’re offered a startup opportunity', 
+         'Keep it as a side project first',  # Good choice
+         'Quit your job and dive in headfirst',  # Bad choice
+         'Reject it without considering the potential',  # Very bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
 
-23: ['Your living space needs updating', 
-     'DIY renovations', 'Save for professional work', 'Move to a newer place', 
-     [[0.2, 0.1, 0.1], [0.1, -0.1, 0.1], [0.3, 0.2, 0.1]]],
+    23: ['Your living space needs updating', 
+         'Save for professional renovations',  # Good choice
+         'Take out a high-interest loan to fix it',  # Bad choice
+         'Ignore the issues and let it deteriorate',  # Very bad choice
+         [[(4, 7), (3, 5), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
 
-24: ['You need to build credit', 
-     'Get a secured credit card', 'Become an authorized user', 'Take out a credit-builder loan', 
-     [[0.3, -0.1, 0.1], [0.2, 0.1, 0.1], [0.1, -0.2, 0.1]]],
+    24: ['You need to build credit', 
+         'Get a secured credit card and use it responsibly',  # Good choice
+         'Take out multiple loans at once',  # Bad choice
+         'Ignore credit-building entirely',  # Very bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
 
-25: ['Your friends are having children', 
-     'Start family planning discussions', 'Focus on career advancement first', 'Enjoy being the fun aunt/uncle', 
-     [[0.2, 0.2, 0.1], [0.3, 0.1, 0.1], [0.1, 0.3, 0.2]]],
+    25: ['Your friends are having children', 
+         'Focus on your own goals and timeline',  # Good choice
+         'Feel pressured to start a family',  # Bad choice
+         'Cut ties with friends who have kids',  # Very bad choice
+         [[(4, 7), (3, 5), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
 
-26: ['You’re considering graduate school', 
-     'Apply while working full-time', 'Save first, then attend full-time', 'Explore online program options', 
-     [[0.3, 0.1, 0.1], [0.3, -0.2, 0.1], [0.2, 0.3, 0.1]]],
+    26: ['You’re considering graduate school', 
+         'Save first, then attend full-time',  # Good choice
+         'Take out massive loans without a plan',  # Bad choice
+         'Give up on further education entirely',  # Very bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
 
-27: ['Your retirement account is underperforming', 
-     'Consult a financial advisor', 'Adjust allocation yourself', 'Increase contribution percentage', 
-     [[0.3, 0.1, 0.1], [0.3, -0.1, 0.1], [0.2, 0.2, 0.1]]],
+    27: ['Your retirement account is underperforming', 
+         'Consult a financial advisor for guidance',  # Good choice
+         'Panic and withdraw all your funds',  # Bad choice
+         'Ignore it and hope it improves',  # Very bad choice
+         [[(4, 7), (3, 5), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
 
-28: ['You’re feeling pressure to buy a home', 
-     'Start house hunting within budget', 'Continue renting and investing', 'Consider moving to a cheaper area', 
-     [[0.2, -0.2, 0.1], [0.3, 0.1, 0.1], [0.1, 0.3, 0.1]]],
+    28: ['You’re feeling pressure to buy a home', 
+         'Continue renting and invest elsewhere',  # Good choice
+         'Stretch your budget to buy immediately',  # Bad choice
+         'Give up on homeownership entirely',  # Very bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]],
 
-29: ['Your skills need updating', 
-     'Take online courses', 'Request company training', 'Attend industry conferences', 
-     [[0.3, 0.2, 0.1], [0.3, 0.1, 0.1], [0.2, 0.3, 0.1]]],
+    29: ['Your skills need updating', 
+         'Take online courses to stay competitive',  # Good choice
+         'Ignore the need for upskilling',  # Bad choice
+         'Quit your job and hope for the best',  # Very bad choice
+         [[(4, 7), (3, 5), (2, 4)], [(-5, -2), (-3, 0), (-1, 2)], [(-7, -4), (-5, -2), (-3, 0)]]],
 
-30: ['You’re considering a major life change', 
-     'Make a five-year plan', 'Take small steps toward the goal', 'Jump in with emergency savings', 
-     [[0.3, 0.1, 0.1], [0.2, 0.2, 0.1], [0.1, 0.3, 0.1]]]
-} 
+    30: ['You’re considering a major life change', 
+         'Make a detailed five-year plan',  # Good choice
+         'Rush into it without preparation',  # Bad choice
+         'Avoid the change and stay stagnant',  # Very bad choice
+         [[(5, 8), (3, 6), (2, 4)], [(-4, -1), (-2, 1), (0, 3)], [(-8, -5), (-6, -3), (-4, -1)]]]
+}
+
 adult_choices = {
-    1: ['Your child is struggling in school','Hire a private tutor','Work with them personally each evening','Meet with teachers to develop a plan',[[0.2,0.1,0.1],[0.1,0.3,0],[0.1,0.2,0]]],
-    2: ['You\'re passed over for a promotion','Start job hunting quietly','Request feedback and improve skills','Consider starting your own business',[[0, -0.2, 0],[0.3, 0.1, 0],[0.1, 0.2, 0]]],
-    3: ['Your aging parents need more support','Research assisted living facilities','Modify your home for them to move in','Hire in-home care assistance',[[0.2,-0.2,0.1],[0.1,-0.2,0.2],[0.1,-0.1,0.3]]],
-    4: ['Your retirement portfolio needs attention','Increase monthly contributions','Switch to more conservative investments','Consult a financial advisor',[[0.3,0.1,0.1],[0.2,-0.1,0.1],[0.4,0.2,0.1]]],
-    5: ['Your marriage needs rekindling','Plan a second honeymoon','Start weekly date nights','Seek marriage counseling',[[0.1,0.4,0.2],[0.2,0.3,0.2],[0.3,0.2,0.3]]],
-    6: ['Your health screening shows concerning results','Make immediate lifestyle changes','Get a second opinion','Research alternative treatments',[[0.2,-0.2,0.3],[0.1,-0.1,0.2],[0.2,-0.2,0.4]]],
-    7: ['Your teenager wants to quit school','Explore alternative education options','Require them to continue','Allow a gap year with structured plans',[[0.3,-0.2,0.1],[0.1,-0.4,0.1],[0.2,0.1,0.2]]],
-    8: ['Your mortgage is underwater','Refinance for better terms','Sell and downsize','Rent it out and move temporarily',[[0.2,-0.3,0.1],[0.1,-0.2,0.1],[0.1,-0.3,0.2]]],
-    9: ['Your industry is becoming obsolete','Return to school for new credentials','Start transition to related field','Open a consulting business',[[0.4,0.1,0.2],[0.3,0.2,0.2],[0.2,0.1,0.1]]],
-    10: ['Your spouse wants to relocate for their career','Support the move and change jobs','Suggest long-distance temporarily','Counter with local opportunities',[[0.1,-0.2,0.1],[0.2,-0.3,0.2],[0.1,0.1,0.2]]],
-    11: ['Your child comes out as LGBTQ+','Join PFLAG for support and education','Maintain open communication','Connect them with relevant resources',[[0.3,0.3,0.2],[0.2,0.2,0.2],[0.2,0.4,0.3]]],
-    12: ['Your investments have significantly grown','Diversify into real estate','Create college funds for children','Plan early retirement',[[0.3,0.3,0.1],[0.2,0.2,0.1],[0.1,0.4,0.2]]],
-    13: ['Your work requires extensive travel','Negotiate remote work options','Switch to a local position','Bring family on occasional trips',[[0.2,0.1,0.2],[0.1,0.2,0.3],[0.1,0.3,0.2]]],
-    14: ['Your friend group is drifting apart','Organize regular gatherings','Focus on making new connections','Maintain individual relationships',[[0.1,0.4,0.2],[0.2,0.3,0.2],[0.1,0.2,0.1]]],
-    15: ['Your home needs major renovations','Take out a home equity loan','Do repairs gradually as budget allows','Sell and buy a newer home',[[0.1,-0.2,0.1],[0.2,-0.1,0.2],[0.1,0.1,0.3]]],
-    16: ['Your adult child wants to move back home','Set clear terms and timeline','Help them find their own place','Welcome them unconditionally',[[0.2,-0.1,0.1],[0.1,0.1,0.2],[0.1,0.3,0.1]]],
-    17: ['Your retirement date seems unrealistic','Develop passive income streams','Plan to work part-time longer','Revise lifestyle expectations',[[0.3,-0.1,0.2],[0.2,-0.2,0.1],[0.1,0.1,0.3]]],
-    18: ['Your physical fitness is declining','Join a gym with a trainer','Start home workout routine','Take up low-impact sports',[[0.2,0.1,0.4],[0.1,0.2,0.3],[0.2,0.2,0.4]]],
-    19: ['Your career feels stagnant','Pursue executive education','Change companies for growth','Start mentoring others',[[0.4,0.2,0.2],[0.3,0.1,0.1],[0.2,0.3,0.2]]],
-    20: ['Your siblings disagree about elder care','Hire a mediator','Take charge of arrangements','Split responsibilities equally',[[0.2,-0.2,0.1],[0.1,-0.3,0.2],[0.3,0.1,0.2]]],
-    21: ['Your marriage is ending','Focus on amicable co-parenting','Protect financial interests','Start fresh in a new location',[[0.2,-0.3,0.1],[0.3,-0.2,0.2],[0.1,-0.4,0.2]]],
-    22: ['Your stress levels are affecting health','Take a sabbatical','Start therapy and meditation','Delegate more responsibilities',[[0.1,0.3,0.4],[0.2,0.4,0.3],[0.1,0.2,0.3]]],
-    23: ['Your children\'s college costs are daunting','Encourage community college first','Take out parent loans','Discuss cost-sharing with children',[[0.2,-0.1,0.1],[0.1,-0.3,0.1],[0.3,0.1,0.1]]],
-    24: ['Your friend needs financial help','Offer a one-time gift','Help them create a budget','Refer them to professional help',[[0.1,0.2,0.1],[0.3,0.1,0.1],[0.2,0.1,0.2]]],
-    25: ['Your job offers early retirement','Accept and start consulting','Negotiate part-time transition','Decline and continue working',[[0.3,0.2,0.2],[0.2,0.1,0.1],[0.1,-0.1,0.1]]],
-    26: ['Your neighborhood is changing rapidly','Sell while prices are high','Invest in home improvements','Get involved in community planning',[[0.1,-0.1,0.1],[0.2,0.1,0.2],[0.3,0.3,0.2]]],
-    27: ['Your health insurance premiums double','Switch to high-deductible plan','Explore healthcare sharing','Change employers for better benefits',[[0.2,-0.2,0.2],[0.1,-0.1,0.3],[0.2,0.1,0.4]]],
-    28: ['Your partner wants to start a business','Offer to manage household expenses','Help with business plan','Invest savings as startup capital',[[0.2,0.1,0.1],[0.3,0.2,0.1],[0.1,-0.2,0.1]]],
-    29: ['Your work-life balance needs improvement','Set firm boundaries on hours','Request flexible scheduling','Look for less demanding position',[[0.2,0.3,0.3],[0.1,0.2,0.2],[0.1,0.4,0.3]]],
-    30: ['Your long-term care insurance is due','Lock in rates now','Self-insure through savings','Research alternative options',[[0.2,-0.1,0.2],[0.3,-0.2,0.1],[0.4,0.1,0.3]]]
+    1: ["Your child is struggling in school",
+        "Hire a private tutor",  # Good choice
+        "Work with them personally",  # Neutral choice
+        "Ignore the issue",  # Bad choice
+        [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    2: ["You're passed over for a promotion",
+        "Request feedback and improve",  # Good choice
+        "Start job hunting quietly",  # Neutral choice
+        "Quit without a plan",  # Bad choice
+        [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    3: ["Your aging parents need more support",
+        "Hire in-home care assistance",  # Good choice
+        "Modify your home for them",  # Neutral choice
+        "Ignore their needs",  # Bad choice
+        [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    4: ["Your retirement portfolio needs attention",
+        "Consult a financial advisor",  # Good choice
+        "Switch to conservative investments",  # Neutral choice
+        "Ignore it completely",  # Bad choice
+        [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    5: ["Your marriage needs rekindling",
+        "Plan a second honeymoon",  # Good choice
+        "Start weekly date nights",  # Neutral choice
+        "Avoid addressing the issue",  # Bad choice
+        [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    6: ["Your health screening shows concerning results",
+        "Make immediate lifestyle changes",  # Good choice
+        "Get a second opinion",  # Neutral choice
+        "Ignore the results",  # Bad choice
+        [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    7: ["Your teenager wants to quit school",
+        "Explore alternative education",  # Good choice
+        "Require them to continue",  # Neutral choice
+        "Let them drop out",  # Bad choice
+        [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    8: ["Your mortgage is underwater",
+        "Refinance for better terms",  # Good choice
+        "Sell and downsize",  # Neutral choice
+        "Default on the loan",  # Bad choice
+        [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    9: ["Your industry is becoming obsolete",
+        "Return to school for new skills",  # Good choice
+        "Start transition to related field",  # Neutral choice
+        "Ignore the trend",  # Bad choice
+        [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    10: ["Your spouse wants to relocate for their career",
+         "Support the move and adapt",  # Good choice
+         "Suggest long-distance temporarily",  # Neutral choice
+         "Refuse and create tension",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    11: ["Your child comes out as LGBTQ+",
+         "Join PFLAG for support",  # Good choice
+         "Maintain open communication",  # Neutral choice
+         "Reject their identity",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    12: ["Your investments have significantly grown",
+         "Diversify into real estate",  # Good choice
+         "Create college funds for kids",  # Neutral choice
+         "Spend it all recklessly",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    13: ["Your work requires extensive travel",
+         "Negotiate remote work options",  # Good choice
+         "Switch to a local position",  # Neutral choice
+         "Quit without a backup plan",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    14: ["Your friend group is drifting apart",
+         "Organize regular gatherings",  # Good choice
+         "Focus on new connections",  # Neutral choice
+         "Cut ties with everyone",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    15: ["Your home needs major renovations",
+         "Do repairs gradually",  # Good choice
+         "Take out a high-interest loan",  # Neutral choice
+         "Ignore the repairs",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+  
+    16: ["Your adult child wants to move back home",
+         "Set clear terms and timeline",  # Good choice
+         "Help them find their own place",  # Neutral choice
+         "Welcome them unconditionally",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    17: ["Your retirement date seems unrealistic",
+         "Develop passive income streams",  # Good choice
+         "Plan to work part-time longer",  # Neutral choice
+         "Revise lifestyle expectations",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    18: ["Your physical fitness is declining",
+         "Join a gym with a trainer",  # Good choice
+         "Start home workout routine",  # Neutral choice
+         "Ignore your health",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    19: ["Your career feels stagnant",
+         "Pursue executive education",  # Good choice
+         "Change companies for growth",  # Neutral choice
+         "Stay and complain",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    20: ["Your siblings disagree about elder care",
+         "Hire a mediator",  # Good choice
+         "Take charge of arrangements",  # Neutral choice
+         "Avoid the responsibility",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    21: ["Your marriage is ending",
+         "Focus on amicable co-parenting",  # Good choice
+         "Protect financial interests",  # Neutral choice
+         "Start fresh in a new location",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    22: ["Your stress levels are affecting health",
+         "Take a sabbatical",  # Good choice
+         "Start therapy and meditation",  # Neutral choice
+         "Ignore the stress",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    23: ["Your children's college costs are daunting",
+         "Encourage community college first",  # Good choice
+         "Take out parent loans",  # Neutral choice
+         "Refuse to help",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    24: ["Your friend needs financial help",
+         "Help them create a budget",  # Good choice
+         "Offer a one-time gift",  # Neutral choice
+         "Refuse to help",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    25: ["Your job offers early retirement",
+         "Negotiate part-time transition",  # Good choice
+         "Accept and start consulting",  # Neutral choice
+         "Decline and continue working",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    26: ["Your neighborhood is changing rapidly",
+         "Get involved in community planning",  # Good choice
+         "Invest in home improvements",  # Neutral choice
+         "Sell while prices are high",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    27: ["Your health insurance premiums double",
+         "Explore healthcare sharing",  # Good choice
+         "Switch to high-deductible plan",  # Neutral choice
+         "Cancel your insurance",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    28: ["Your partner wants to start a business",
+         "Help with business plan",  # Good choice
+         "Offer to manage household expenses",  # Neutral choice
+         "Refuse to support them",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    29: ["Your work-life balance needs improvement",
+         "Request flexible scheduling",  # Good choice
+         "Set firm boundaries on hours",  # Neutral choice
+         "Quit without a plan",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    30: ["Your long-term care insurance is due",
+         "Lock in rates now",  # Good choice
+         "Self-insure through savings",  # Neutral choice
+         "Cancel the policy",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]]
 }
+
 elder_choices = {
-    1: ['Your doctor recommends downsizing', 'Move to a single-level home', 'Relocate to a retirement community', 'Modify current home for accessibility', [[0.05, -0.25, 0.15], [0.1, 0.2, 0.1], [0.05, -0.05, 0.25]]],
-    2: ['Your memory isn\'t as sharp', 'Start memory enhancement exercises', 'Use technology aids and reminders', 'Join a cognitive health program', [[0.25, -0.1, 0.05], [0.15, 0.05, 0.1], [0.1, 0.1, 0.2]]],
-    3: ['Your grandchildren live far away', 'Learn video calling apps', 'Plan regular family visits', 'Send weekly care packages', [[0.1, 0.3, 0.1], [0.1, 0.2, 0.15], [0.05, 0.3, 0.1]]],
-    4: ['Your retirement savings need to last longer', 'Reduce monthly withdrawals', 'Consult a financial advisor', 'Explore part-time work options', [[0.1, -0.2, 0.1], [0.2, 0.05, 0.2], [0.1, 0.05, 0.2]]],
-    5: ['Your spouse needs full-time care', 'Provide care yourself with support', 'Hire in-home medical assistance', 'Consider assisted living facilities', [[0.05, -0.3, 0.15], [0.2, -0.15, 0.25], [0.05, -0.05, 0.3]]],
-    6: ['Your friend group is shrinking', 'Join senior social clubs', 'Volunteer in community', 'Take classes at senior center', [[0.1, 0.3, 0.2], [0.2, 0.4, 0.2], [0.2, 0.3, 0.15]]],
-    7: ['Your driving abilities are declining', 'Limit driving to daytime only', 'Use ride-sharing services', 'Rely on family for transportation', [[0.05, -0.2, 0.1], [0.1, -0.1, 0.1], [0.0, -0.3, 0.2]]],
-    8: ['Your estate needs planning', 'Update will and medical directives', 'Set up trusts for beneficiaries', 'Discuss plans with family', [[0.2, 0.1, 0.05], [0.2, 0.2, 0.05], [0.1, 0.3, 0.1]]],
-    9: ['Your home maintenance is becoming difficult', 'Hire regular maintenance service', 'Move to maintenance-free living', 'Ask family for assistance', [[0.1, -0.05, 0.15], [0.1, 0.2, 0.25], [0.05, -0.2, 0.15]]],
-    10: ['Your medical costs are increasing', 'Review Medicare supplement options', 'Research prescription assistance programs', 'Consider long-term care insurance', [[0.1, -0.2, 0.25], [0.2, -0.05, 0.15], [0.05, -0.3, 0.2]]],
-    11: ['Your energy levels are decreasing', 'Schedule activities during peak hours', 'Take regular short rests', 'Modify exercise routine', [[0.1, -0.05, 0.3], [0.1, 0.05, 0.2], [0.2, 0.0, 0.4]]],
-    12: ['Your children disagree about your care', 'Make your wishes legally clear', 'Mediate family discussions', 'Choose one child as primary decision-maker', [[0.15, -0.25, 0.1], [0.1, -0.2, 0.05], [0.05, -0.3, 0.1]]],
-    13: ['Your neighborhood is less accessible', 'Relocate closer to amenities', 'Arrange regular transportation', 'Organize home delivery services', [[0.05, -0.1, 0.15], [0.1, 0.05, 0.2], [0.1, 0.0, 0.25]]],
-    14: ['Your technology needs updating', 'Take senior tech classes', 'Ask grandchildren for help', 'Hire tech support service', [[0.3, 0.15, 0.1], [0.2, 0.25, 0.1], [0.1, 0.1, 0.1]]],
-    15: ['Your social calendar feels empty', 'Join senior travel groups', 'Start a hobby club', 'Volunteer at local organizations', [[0.1, 0.35, 0.15], [0.2, 0.3, 0.2], [0.2, 0.4, 0.3]]],
-    16: ['Your nutrition needs attention', 'Use meal delivery services', 'Learn simple healthy recipes', 'Share meals with neighbors', [[0.05, 0.05, 0.3], [0.1, 0.1, 0.25], [0.3, 0.3, 0.35]]],
-    17: ['Your home security concerns you', 'Install smart security system', 'Move to gated community', 'Arrange regular check-ins', [[0.1, 0.1, 0.05], [0.05, 0.2, 0.1], [0.0, 0.1, 0.2]]],
-    18: ['Your hearing is declining', 'Get hearing aids', 'Learn lip reading', 'Use written communication more', [[0.1, -0.05, 0.25], [0.2, -0.1, 0.15], [0.3, -0.15, 0.1]]],
-    19: ['Your legacy needs attention', 'Write family history', 'Create video messages', 'Organize personal mementos', [[0.2, 0.25, 0.1], [0.15, 0.3, 0.05], [0.1, 0.2, 0.05]]],
-    20: ['Your exercise routine needs modification', 'Join senior fitness classes', 'Work with physical therapist', 'Start daily walking group', [[0.1, 0.2, 0.35], [0.2, 0.1, 0.3], [0.1, 0.25, 0.2]]],
-    21: ['Your financial decisions need oversight', 'Add trusted advisor to accounts', 'Set up automatic bill payments', 'Create power of attorney', [[0.15, -0.05, 0.05], [0.3, 0.05, 0.1], [0.1, -0.2, 0.1]]],
-    22: ['Your holiday traditions need adjusting', 'Host smaller gatherings', 'Travel to family instead', 'Create new traditions', [[0.05, 0.3, 0.15], [0.1, 0.2, 0.1], [0.2, 0.35, 0.2]]],
-    23: ['Your medication schedule is complex', 'Use pill organizer with alarms', 'Work with pharmacy service', 'Have family member assist', [[0.15, -0.1, 0.2], [0.1, 0.0, 0.3], [0.0, -0.15, 0.25]]],
-    24: ['Your living space needs organizing', 'Hire professional organizer', 'Declutter with family help', 'Downsize possessions gradually', [[0.05, 0.2, 0.1], [0.1, 0.3, 0.2], [0.3, 0.15, 0.1]]],
-    25: ['Your sleep patterns are changing', 'Adjust daily routine', 'Consult sleep specialist', 'Try natural remedies', [[0.1, 0.2, 0.3], [0.2, 0.05, 0.4], [0.1, 0.25, 0.3]]],
-    26: ['Your social media puzzles you', 'Take basic computer classes', 'Ask younger relatives to teach you', 'Stick to phone calls and letters', [[0.3, 0.05, 0.1], [0.2, 0.1, 0.1], [0.0, 0.05, 0.1]]],
-    27: ['Your independence needs balancing', 'Accept help for difficult tasks', 'Maintain control of key decisions', 'Create independence/assistance plan', [[0.05, -0.2, 0.15], [0.15, 0.1, 0.3], [0.3, -0.1, 0.2]]],
-    28: ['Your spiritual needs are changing', 'Join senior faith group', 'Explore meditation', 'Seek spiritual counseling', [[0.1, 0.3, 0.2], [0.2, 0.2, 0.2], [0.15, 0.4, 0.2]]],
-    29: ['Your hobbies need adapting', 'Find seated versions of activities', 'Learn new, easier hobbies', 'Join adaptive recreation programs', [[0.1, 0.2, 0.3], [0.2, 0.25, 0.2], [0.15, 0.2, 0.3]]],
-    30: ['Your end-of-life wishes need documenting', 'Create detailed written plans', 'Have family meeting to discuss', 'Work with estate planner', [[0.3, 0.05, 0.1], [0.2, -0.1, 0.05], [0.3, 0.15, 0.1]]],
-     31: ['You feel disconnected from current events', 
-         'Read daily news summaries', 
-         'Join discussion groups', 
-         'Follow trusted news sources online', 
-         [[0.3, 0.2, 0.1], [0.2, 0.3, 0.1], [0.2, 0.2, 0.1]]],
+    1: ["Your doctor recommends downsizing",
+        "Ignore the recommendation",  # Bad choice
+        "Move to a single-level home",  # Good choice
+        "Relocate to a retirement community",  # Neutral choice
+        [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    32: ['You want to preserve your memories', 
-         'Start a personal journal', 
-         'Record stories on video/audio', 
-         'Create a scrapbook with family', 
-         [[0.2, 0.3, 0.1], [0.3, 0.3, 0.1], [0.2, 0.2, 0.1]]],
+    2: ["Your memory isn't as sharp",
+        "Use reminders and apps",  # Neutral choice
+        "Start memory exercises",  # Good choice
+        "Ignore the issue",  # Bad choice
+        [[(-5, 3), (-5, 3), (-5, 3)], [(5, 8), (5, 8), (5, 8)], [(-7, -2), (-7, -2), (-7, -2)]]],
 
-    33: ['Your mobility is decreasing', 
-         'Use mobility aids as needed', 
-         'Attend physical therapy', 
-         'Arrange home modifications', 
-         [[0.1, -0.1, 0.3], [0.2, 0.0, 0.3], [0.1, -0.2, 0.2]]],
+    3: ["Your grandchildren live far away",
+        "Cut off communication",  # Bad choice
+        "Learn video calling apps",  # Good choice
+        "Plan regular family visits",  # Neutral choice
+        [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    34: ['You struggle with loneliness', 
-         'Adopt a pet for companionship', 
-         'Join a community support group', 
-         'Schedule daily social interactions', 
-         [[0.1, 0.4, 0.2], [0.2, 0.3, 0.1], [0.2, 0.4, 0.2]]],
+    4: ["Your retirement savings need to last",
+        "Spend recklessly",  # Bad choice
+        "Reduce monthly withdrawals",  # Good choice
+        "Consult a financial advisor",  # Neutral choice
+        [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    35: ['Your eyesight is declining', 
-         'Use larger text settings on devices', 
-         'Schedule regular eye check-ups', 
-         'Try audiobooks and voice assistants', 
-         [[0.1, -0.1, 0.2], [0.2, 0.0, 0.2], [0.3, 0.0, 0.1]]],
+    5: ["Your spouse needs full-time care",
+        "Ignore their needs",  # Bad choice
+        "Hire in-home assistance",  # Good choice
+        "Provide care yourself",  # Neutral choice
+        [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    36: ['Your fitness motivation is low', 
-         'Find a workout partner', 
-         'Join a gentle exercise class', 
-         'Use fitness tracking technology', 
-         [[0.2, 0.2, 0.3], [0.1, 0.3, 0.2], [0.3, 0.1, 0.3]]],
+    6: ["Your friend group is shrinking",
+        "Isolate yourself",  # Bad choice
+        "Join senior social clubs",  # Good choice
+        "Volunteer in the community",  # Neutral choice
+        [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    37: ['Your home feels too quiet', 
-         'Listen to audiobooks or podcasts', 
-         'Play relaxing background music', 
-         'Adopt a small pet', 
-         [[0.1, 0.3, 0.2], [0.1, 0.4, 0.2], [0.2, 0.3, 0.2]]],
+    7: ["Your driving abilities are declining",
+        "Continue driving unsafely",  # Bad choice
+        "Limit driving to daytime",  # Good choice
+        "Use ride-sharing services",  # Neutral choice
+        [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    38: ['You want to explore creative hobbies', 
-         'Take an online art or music class', 
-         'Join a local hobby group', 
-         'Experiment with DIY projects at home', 
-         [[0.3, 0.3, 0.2], [0.2, 0.3, 0.1], [0.2, 0.2, 0.2]]],
+    8: ["Your estate needs planning",
+        "Ignore estate planning",  # Bad choice
+        "Update will and directives",  # Good choice
+        "Set up trusts for beneficiaries",  # Neutral choice
+        [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    39: ['Your financial security worries you', 
-         'Reevaluate your monthly budget', 
-         'Consult a financial planner', 
-         'Downsize unnecessary expenses', 
-         [[0.2, -0.2, 0.1], [0.3, 0.0, 0.1], [0.1, -0.3, 0.2]]],
+    9: ["Your home maintenance is difficult",
+        "Ignore repairs",  # Bad choice
+        "Hire regular maintenance",  # Good choice
+        "Ask family for assistance",  # Neutral choice
+        [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    40: ['You want to give back to the community', 
-         'Mentor younger generations', 
-         'Volunteer for charity organizations', 
-         'Participate in community projects', 
-         [[0.3, 0.3, 0.2], [0.2, 0.4, 0.2], [0.2, 0.3, 0.2]]],
+    10: ["Your medical costs are increasing",
+         "Cancel insurance",  # Bad choice
+         "Review Medicare options",  # Good choice
+         "Research assistance programs",  # Neutral choice
+         [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    41: ['You worry about falling at home', 
-         'Install safety rails and grips', 
-         'Improve home lighting', 
-         'Use slip-resistant rugs and flooring', 
-         [[0.1, -0.1, 0.3], [0.2, 0.0, 0.3], [0.3, -0.1, 0.3]]],
+    11: ["Your energy levels are decreasing",
+         "Push through exhaustion",  # Bad choice
+         "Schedule activities wisely",  # Good choice
+         "Take regular short rests",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    42: ['Your eating habits need improvement', 
-         'Consult a nutritionist', 
-         'Plan and prepare balanced meals', 
-         'Join a community meal program', 
-         [[0.2, 0.1, 0.3], [0.1, 0.2, 0.3], [0.3, 0.3, 0.4]]],
+    12: ["Your children disagree about your care",
+         "Avoid the issue",  # Bad choice
+         "Make your wishes clear",  # Good choice
+         "Mediate family discussions",  # Neutral choice
+         [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    43: ['Your stress levels are increasing', 
-         'Practice daily meditation', 
-         'Engage in relaxing hobbies', 
-         'Seek professional counseling if needed', 
-         [[0.2, 0.3, 0.2], [0.3, 0.2, 0.1], [0.1, 0.3, 0.1]]],
+    13: ["Your neighborhood is less accessible",
+         "Stay isolated at home",  # Bad choice
+         "Relocate closer to amenities",  # Good choice
+         "Arrange regular transportation",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    44: ['You want to improve brain health', 
-         'Play strategy games or puzzles', 
-         'Take online educational courses', 
-         'Engage in discussions with peers', 
-         [[0.3, 0.2, 0.1], [0.2, 0.3, 0.1], [0.3, 0.2, 0.2]]],
+    14: ["Your technology needs updating",
+         "Avoid technology entirely",  # Bad choice
+         "Take senior tech classes",  # Good choice
+         "Ask grandchildren for help",  # Neutral choice
+         [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    45: ['Your hearing makes communication difficult', 
-         'Try speech-to-text apps', 
-         'Use hearing amplifiers', 
-         'Take sign language lessons', 
-         [[0.2, -0.1, 0.2], [0.3, -0.2, 0.1], [0.1, -0.1, 0.1]]],
+    15: ["Your social calendar feels empty",
+         "Stay home and isolate",  # Bad choice
+         "Join senior travel groups",  # Good choice
+         "Start a hobby club",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    46: ['You feel nostalgic and miss old friends', 
-         'Reconnect with past acquaintances', 
-         'Share old memories through letters or calls', 
-         'Attend reunions or alumni events', 
-         [[0.2, 0.3, 0.1], [0.3, 0.4, 0.1], [0.1, 0.3, 0.1]]],
+    16: ["Your adult child wants to move back home",
+         "Welcome them unconditionally",  # Bad choice
+         "Set clear terms and timeline",  # Good choice
+         "Help them find their own place",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    47: ['You struggle with digital banking', 
-         'Take a digital banking course', 
-         'Set up secure auto-payments', 
-         'Ask a trusted family member for assistance', 
-         [[0.3, 0.1, 0.1], [0.2, 0.2, 0.1], [0.1, 0.0, 0.1]]],
+    17: ["Your retirement date seems unrealistic",
+         "Revise lifestyle expectations",  # Bad choice
+         "Develop passive income streams",  # Good choice
+         "Plan to work part-time longer",  # Neutral choice
+         [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    48: ['You want to travel but need assistance', 
-         'Plan trips with senior-friendly agencies', 
-         'Travel with a companion', 
-         'Use accessibility services at destinations', 
-         [[0.2, 0.3, 0.2], [0.1, 0.4, 0.3], [0.3, 0.2, 0.3]]],
+    18: ["Your physical fitness is declining",
+         "Ignore your health",  # Bad choice
+         "Join a gym with a trainer",  # Good choice
+         "Start home workout routine",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    49: ['You want to simplify daily life', 
-         'Use smart home devices', 
-         'Delegate household tasks', 
-         'Follow a structured daily routine', 
-         [[0.2, 0.2, 0.2], [0.3, 0.1, 0.1], [0.1, 0.2, 0.2]]],
+    19: ["Your career feels stagnant",
+         "Stay and complain",  # Bad choice
+         "Pursue executive education",  # Good choice
+         "Change companies for growth",  # Neutral choice
+         [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    50: ['You want to explore new entertainment', 
-         'Try streaming services', 
-         'Attend live community events', 
-         'Explore books or online learning', 
-         [[0.2, 0.3, 0.1], [0.3, 0.3, 0.2], [0.2, 0.2, 0.1]]],
+    20: ["Your siblings disagree about elder care",
+         "Avoid the responsibility",  # Bad choice
+         "Hire a mediator",  # Good choice
+         "Take charge of arrangements",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    51: ['You want to stay independent longer', 
-         'Learn new self-care strategies', 
-         'Use assistive technology', 
-         'Refuse help and do everything yourself',  
-         [[0.3, 0.2, 0.2], [0.2, 0.3, 0.2], [-0.1, -0.2, -0.2]]],
+    21: ["Your marriage is ending",
+         "Start fresh in a new location",  # Bad choice
+         "Focus on amicable co-parenting",  # Good choice
+         "Protect financial interests",  # Neutral choice
+         [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    52: ['Your dental health needs attention', 
-         'Ignore minor dental issues until pain starts',  
-         'Improve daily oral hygiene', 
-         'Schedule regular checkups', 
-         [[-0.2, -0.1, -0.3], [0.2, 0.1, 0.2], [0.1, 0.0, 0.3]]],
+    22: ["Your stress levels are affecting health",
+         "Ignore the stress",  # Bad choice
+         "Take a sabbatical",  # Good choice
+         "Start therapy and meditation",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    53: ['You feel like your wardrobe is outdated', 
-         'Refresh your clothing style', 
-         'Stop caring about appearance completely',  
-         'Consult a stylist or family for advice', 
-         [[0.2, 0.3, 0.1], [-0.1, -0.2, -0.1], [0.3, 0.3, 0.1]]],
+    23: ["Your children's college costs are daunting",
+         "Refuse to help",  # Bad choice
+         "Encourage community college first",  # Good choice
+         "Take out parent loans",  # Neutral choice
+         [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    54: ['You’re interested in lifelong learning', 
-         'Take free online courses', 
-         'Only watch TV and avoid reading',  
-         'Attend lectures or seminars', 
-         [[0.3, 0.2, 0.1], [-0.2, -0.3, -0.1], [0.1, 0.2, 0.1]]],
+    24: ["Your friend needs financial help",
+         "Refuse to help",  # Bad choice
+         "Help them create a budget",  # Good choice
+         "Offer a one-time gift",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    55: ['You struggle with grocery shopping', 
-         'Use grocery delivery services', 
-         'Only buy processed foods for convenience',  
-         'Create simple meal plans to reduce trips', 
-         [[0.1, 0.0, 0.2], [-0.2, -0.1, -0.3], [0.3, 0.1, 0.3]]],
+    25: ["Your job offers early retirement",
+         "Decline and continue working",  # Bad choice
+         "Negotiate part-time transition",  # Good choice
+         "Accept and start consulting",  # Neutral choice
+         [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    56: ['You want to explore new cultures', 
-         'Try international cuisine', 
-         'Learn a new language', 
-         'Stick only to familiar habits and avoid anything new',  
-         [[0.3, 0.3, 0.1], [0.2, 0.2, 0.1], [-0.2, -0.3, -0.1]]],
+    26: ["Your neighborhood is changing rapidly",
+         "Sell while prices are high",  # Bad choice
+         "Get involved in community planning",  # Good choice
+         "Invest in home improvements",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    57: ['You feel overwhelmed by clutter', 
-         'Declutter one area at a time', 
-         'Just store everything in boxes and avoid sorting',  
-         'Donate unused items to charity', 
-         [[0.2, 0.3, 0.1], [-0.1, -0.2, -0.1], [0.3, 0.3, 0.2]]],
+    27: ["Your health insurance premiums double",
+         "Cancel your insurance",  # Bad choice
+         "Explore healthcare sharing",  # Good choice
+         "Switch to high-deductible plan",  # Neutral choice
+         [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    58: ['You’re looking for meaningful relationships', 
-         'Join an interest-based community group', 
-         'Avoid socializing to prevent stress',  
-         'Try senior-friendly social apps', 
-         [[0.2, 0.4, 0.1], [-0.2, -0.3, -0.2], [0.1, 0.3, 0.1]]],
+    28: ["Your partner wants to start a business",
+         "Refuse to support them",  # Bad choice
+         "Help with business plan",  # Good choice
+         "Offer to manage household expenses",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    59: ['You’re worried about skin health', 
-         'Use dermatologist-approved skincare', 
-         'Ignore skincare because aging is natural',  
-         'Stay hydrated and wear sunscreen', 
-         [[0.1, 0.1, 0.3], [-0.2, -0.2, -0.3], [0.3, 0.2, 0.3]]],
+    29: ["Your work-life balance needs improvement",
+         "Quit without a plan",  # Bad choice
+         "Request flexible scheduling",  # Good choice
+         "Set firm boundaries on hours",  # Neutral choice
+         [[(-7, -2), (-7, -2), (-7, -2)], [(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)]]],
 
-    60: ['You want to maintain good posture', 
-         'Do posture-correcting exercises', 
-         'Slouching is comfortable, so don’t change habits',  
-         'Use ergonomic furniture', 
-         [[0.2, 0.1, 0.3], [-0.2, -0.1, -0.2], [0.3, 0.1, 0.3]]],
+    30: ["Your long-term care insurance is due",
+         "Cancel the policy",  # Bad choice
+         "Lock in rates now",  # Good choice
+         "Self-insure through savings",  # Neutral choice
+         [[(-8, -3), (-8, -3), (-8, -3)], [(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)]]],
 
-    61: ['You have trouble keeping up with household chores', 
-         'Create a simple cleaning schedule', 
-         'Just let the house get messy, it’s not a big deal',  
-         'Hire cleaning services as needed', 
-         [[0.1, 0.2, 0.2], [-0.2, -0.3, -0.2], [0.2, 0.3, 0.2]]],
+    31: ["You feel disconnected from current events",
+         "Follow trusted news sources online",  # Good choice
+         "Join discussion groups",  # Neutral choice
+         "Ignore current events entirely",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
 
-    62: ['You need to manage stress better', 
-         'Practice deep breathing techniques', 
-         'Ignore stress and hope it goes away',  
-         'Start journaling to express emotions', 
-         [[0.2, 0.3, 0.1], [-0.2, -0.3, -0.1], [0.3, 0.3, 0.1]]],
+    32: ["You want to preserve your memories",
+         "Create a scrapbook with family",  # Good choice
+         "Record stories on video/audio",  # Neutral choice
+         "Do nothing and let memories fade",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
 
-    63: ['You’re losing interest in hobbies', 
-         'Try a new creative activity', 
-         'Stop doing hobbies because they seem pointless',  
-         'Find a hobby group for motivation', 
-         [[0.3, 0.3, 0.1], [-0.2, -0.3, -0.2], [0.2, 0.4, 0.1]]],
+    33: ["Your mobility is decreasing",
+         "Arrange home modifications",  # Good choice
+         "Attend physical therapy",  # Neutral choice
+         "Ignore mobility issues",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
 
-    64: ['You want to enhance your spirituality', 
-         'Attend faith-based events', 
-         'Completely isolate yourself for deep self-reflection',  
-         'Read spiritual or philosophical books', 
-         [[0.1, 0.4, 0.1], [-0.2, -0.3, -0.2], [0.2, 0.3, 0.1]]],
+    34: ["You struggle with loneliness",
+         "Schedule daily social interactions",  # Good choice
+         "Join a community support group",  # Neutral choice
+         "Isolate yourself further",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
 
-    65: ['You’re struggling with time management', 
-         'Use a planner or reminder apps', 
-         'Just do things whenever you feel like it, no schedule needed',  
-         'Prioritize tasks based on importance', 
-         [[0.3, 0.2, 0.1], [-0.2, -0.3, -0.2], [0.2, 0.3, 0.1]]]
+    35: ["Your eyesight is declining",
+         "Try audiobooks and voice assistants",  # Good choice
+         "Schedule regular eye check-ups",  # Neutral choice
+         "Ignore vision problems",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
 
+    36: ["Your fitness motivation is low",
+         "Use fitness tracking technology",  # Good choice
+         "Join a gentle exercise class",  # Neutral choice
+         "Stop exercising entirely",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
 
+    37: ["Your home feels too quiet",
+         "Adopt a small pet",  # Good choice
+         "Play relaxing background music",  # Neutral choice
+         "Do nothing and stay in silence",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
 
+    38: ["You want to explore creative hobbies",
+         "Experiment with DIY projects at home",  # Good choice
+         "Join a local hobby group",  # Neutral choice
+         "Avoid trying new hobbies",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    39: ["Your financial security worries you",
+         "Downsize unnecessary expenses",  # Good choice
+         "Consult a financial planner",  # Neutral choice
+         "Ignore financial concerns",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    40: ["You want to give back to the community",
+         "Participate in community projects",  # Good choice
+         "Volunteer for charity organizations",  # Neutral choice
+         "Avoid community involvement",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    41: ["You worry about falling at home",
+         "Use slip-resistant rugs and flooring",  # Good choice
+         "Improve home lighting",  # Neutral choice
+         "Ignore safety concerns",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    42: ["Your eating habits need improvement",
+         "Join a community meal program",  # Good choice
+         "Plan and prepare balanced meals",  # Neutral choice
+         "Continue unhealthy eating habits",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    43: ["Your stress levels are increasing",
+         "Seek professional counseling if needed",  # Good choice
+         "Engage in relaxing hobbies",  # Neutral choice
+         "Ignore stress and hope it goes away",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    44: ["You want to improve brain health",
+         "Engage in discussions with peers",  # Good choice
+         "Take online educational courses",  # Neutral choice
+         "Avoid mental stimulation",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    45: ["Your hearing makes communication difficult",
+         "Take sign language lessons",  # Good choice
+         "Use hearing amplifiers",  # Neutral choice
+         "Avoid social interactions",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    46: ["You feel nostalgic and miss old friends",
+         "Attend reunions or alumni events",  # Good choice
+         "Share old memories through letters or calls",  # Neutral choice
+         "Avoid reconnecting with anyone",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    47: ["You struggle with digital banking",
+         "Ask a trusted family member for assistance",  # Good choice
+         "Set up secure auto-payments",  # Neutral choice
+         "Avoid digital banking entirely",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    48: ["You want to travel but need assistance",
+         "Use accessibility services at destinations",  # Good choice
+         "Travel with a companion",  # Neutral choice
+         "Avoid traveling altogether",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    49: ["You want to simplify daily life",
+         "Follow a structured daily routine",  # Good choice
+         "Delegate household tasks",  # Neutral choice
+         "Ignore organization and live chaotically",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    50: ["You want to explore new entertainment",
+         "Explore books or online learning",  # Good choice
+         "Attend live community events",  # Neutral choice
+         "Stick to the same old routines",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    51: ["You want to stay independent longer",
+         "Use assistive technology",  # Good choice
+         "Learn new self-care strategies",  # Neutral choice
+         "Refuse help and do everything yourself",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    52: ["Your dental health needs attention",
+         "Schedule regular checkups",  # Good choice
+         "Improve daily oral hygiene",  # Neutral choice
+         "Ignore minor dental issues until pain starts",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    53: ["You feel like your wardrobe is outdated",
+         "Consult a stylist or family for advice",  # Good choice
+         "Refresh your clothing style",  # Neutral choice
+         "Stop caring about appearance completely",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    54: ["You’re interested in lifelong learning",
+         "Attend lectures or seminars",  # Good choice
+         "Take free online courses",  # Neutral choice
+         "Only watch TV and avoid reading",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    55: ["You struggle with grocery shopping",
+         "Create simple meal plans to reduce trips",  # Good choice
+         "Use grocery delivery services",  # Neutral choice
+         "Only buy processed foods for convenience",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    56: ["You want to explore new cultures",
+         "Learn a new language",  # Good choice
+         "Try international cuisine",  # Neutral choice
+         "Stick only to familiar habits and avoid anything new",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    57: ["You feel overwhelmed by clutter",
+         "Donate unused items to charity",  # Good choice
+         "Declutter one area at a time",  # Neutral choice
+         "Just store everything in boxes and avoid sorting",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    58: ["You’re looking for meaningful relationships",
+         "Try senior-friendly social apps",  # Good choice
+         "Join an interest-based community group",  # Neutral choice
+         "Avoid socializing to prevent stress",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    59: ["You’re worried about skin health",
+         "Stay hydrated and wear sunscreen",  # Good choice
+         "Use dermatologist-approved skincare",  # Neutral choice
+         "Ignore skincare because aging is natural",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    60: ["You want to maintain good posture",
+         "Use ergonomic furniture",  # Good choice
+         "Do posture-correcting exercises",  # Neutral choice
+         "Slouching is comfortable, so don’t change habits",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    61: ["You have trouble keeping up with household chores",
+         "Hire cleaning services as needed",  # Good choice
+         "Create a simple cleaning schedule",  # Neutral choice
+         "Just let the house get messy, it’s not a big deal",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    62: ["You need to manage stress better",
+         "Start journaling to express emotions",  # Good choice
+         "Practice deep breathing techniques",  # Neutral choice
+         "Ignore stress and hope it goes away",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    63: ["You’re losing interest in hobbies",
+         "Find a hobby group for motivation",  # Good choice
+         "Try a new creative activity",  # Neutral choice
+         "Stop doing hobbies because they seem pointless",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
+
+    64: ["You want to enhance your spirituality",
+         "Read spiritual or philosophical books",  # Good choice
+         "Attend faith-based events",  # Neutral choice
+         "Completely isolate yourself for deep self-reflection",  # Bad choice
+         [[(5, 8), (5, 8), (5, 8)], [(-4, 2), (-4, 2), (-4, 2)], [(-7, -2), (-7, -2), (-7, -2)]]],
+
+    65: ["You’re struggling with time management",
+         "Prioritize tasks based on importance",  # Good choice
+         "Use a planner or reminder apps",  # Neutral choice
+         "Just do things whenever you feel like it, no schedule needed",  # Bad choice
+         [[(4, 7), (4, 7), (4, 7)], [(-5, 3), (-5, 3), (-5, 3)], [(-8, -3), (-8, -3), (-8, -3)]]],
 }
+
+
 colours = {'red': (255,0,0)
           ,'yellow': (255,255,0)
           ,'green': (0,255,0)
