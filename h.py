@@ -7,7 +7,7 @@ screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("Tiny Choices")
 Game = game()
 f=0
-club_buttons = [pygame.Rect(50, 300 + (i * 50), 300, 40) for i in range(len(Game.schools[f].clubs))]
+club_buttons = [pygame.Rect(50, 230 + (i * 80), 300, 50) for i in range(len(Game.schools[f].clubs))]
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 header_rect = pygame.Rect(0, 0, 800, 50)
@@ -48,12 +48,21 @@ def draw_school_screen():
     screen.blit(Game.fonts[1].render("Bunk Class", True, BLACK), (550, 415))
     if show_clubs is not None:
         display_clubs()
+        
+def draw_join(x,y,club):
+    join_button = pygame.Rect(x+ 250 , y+10,45, 25)
+    pygame.draw.rect(screen, Game.colour_2, join_button, border_radius=5)
+    mort_text = Game.fonts[2].render("Join", True, BLACK)
+    screen.blit(mort_text, (x + 260, y  + 15))
+  
+
 
 def display_clubs(): 
     i=0
     for club in club_buttons:
         pygame.draw.rect(screen, Game.colour_1, club)
         screen.blit(Game.fonts[0].render(f"{Game.schools[f].clubs[i]}", True, BLACK), (club.x + 10, club.y + 10))
+        draw_join(club.x,club.y,club)
         i+=1
 
 print('tag')
