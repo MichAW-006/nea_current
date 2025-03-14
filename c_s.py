@@ -58,6 +58,7 @@ class Npc():
     self.health = random.randint(0,100)
     self.relationship_level = random.randint(0,100)
     self.life = True
+    self.last_asked = -1
     self.married = bool(random.getrandbits(1))
     self.relationship_level = 10
     self.relationship_type = None
@@ -93,25 +94,32 @@ class Npc():
       return ''
       
   def to_date(self,player):
-    if self.married ==False and player.significant_other == None:
-      if bool(random.getrandbits(1)) == True:
-        if self.gender == 'male':
-          self.relationship_type = 'Boyfriend'
-        else:
-          self.relationship_type = 'Girlfriend'
-        player.relationships.append(self)
-        player.significant_other = self
-        return f'{self.name} {self.surname} has agreed to be your {self.relationship_type}'
+    if player.age>self.last_asked:
+      if self.married ==False and player.significant_other == None:
+        if bool(random.getrandbits(1)) == True:
+          self.relationship_type = 'Significant Other'
+          player.relationships.append(self)
+          player.significant_other = self
+          self.last_asked=player.age
+          return f'{self.name} {self.surname} has agreed to be your {self.relationship_type}'
+      else:
+        self.last_asked=player.age
+        return ''
     else:
-      return ''
+        return ''
 
   def be_friends(self,player):
-    if bool(random.getrandbits(1)) == True:
-        self.relationship_type = 'Friend'
-        player.relationships.append(self)
-        return f'{self.name} {self.surname} has agreed to be your {self.relationship_type}'
+    if player.age>self.last_asked:
+      if bool(random.getrandbits(1)) == True:
+          self.relationship_type = 'Friend'
+          player.relationships.append(self)
+          self.last_asked=player.age
+          return f'{self.name} {self.surname} has agreed to be your {self.relationship_type}'
+      else:
+        self.last_asked=player.age
+        return ''
     else:
-      return ''
+        return ''
         
 
   def check_health(self):
@@ -221,8 +229,10 @@ class Sibling():
       if bool(random.getrandbits(1)) is True:
         self.health += random.randint(-50,0)
         player.health+=random.randint(-50,0)
+        self.last_asked=player.age
         return (f'You and {self.name} tussled')
       else:
+        self.last_asked=player.age
         return (f'{self.name} doesn\'t want to fight you')
     else:
       return ''
@@ -284,11 +294,13 @@ class Job():
     
   def apply_for_job(self,player):
     if self.asked is False:
-      if ( player.education is in self.education) and (player.skill >= self.skill_required) and (player.experience >=self.experience_required):
-        if player.job is not None:
-          text = f'You quit working at {player.job.work_place} to work as a {self.title} at {self.work_place}'
-          player.job= self
-          return text
+      if player.education in self.education:
+        if player.skill >= self.skill_required: 
+          if player.experience >=self.experience_required:
+            if player.job is not None:
+              text = f'You quit working at {player.job.work_place} to work as a {self.title} at {self.work_place}'
+              player.job= self
+              return text
         else:
           player.job= self
           return f'You got the {self.title} job at {self.work_place}'
@@ -338,30 +350,34 @@ class Property():
     self.years_left =25
     self.strikes = 3
     self.bought = False
+    self.asked = False
 
   def buy(self,player,mortgage):
-    if self.bought is False:
-      if mortgage is True: 
-        if player.money >= (self.price/10):
-          self.price_paid=(self.price/10)
-          player.money= player.money- self.price_paid
-          print (f'you bought the {self.type} at {self.location}')
-          self.bought= True
-          return True
-        else:
-          print('not enough money ')
-          return False
-      elif mortgage is False :
-        if player.money >= self.price:
-          self.price_paid = self.price
-          player.money= player.money-self.price_paid
-          print (f'you bought the {self.type} at {self.location}')
-          self.bought = True
-          return True 
-        else:
-          print('not enough money')
-          return False
-          
+    if self.asked is False:
+      if self.bought is False:
+        if mortgage is True: 
+          if player.money >= (self.price/10):
+            self.price_paid=(self.price/10)
+            player.money= player.money- self.price_paid
+            self.asked = True
+            self.bought= True
+            return f'you bought the {self.type} at {self.location}'
+          else:
+            self.asked = True
+            return 'not enough money'
+        elif mortgage is False :
+          if player.money >= self.price:
+            self.price_paid = self.price
+            player.money= player.money-self.price_paid
+            self.bought = True
+            self.asked = True
+            return f'you bought the {self.type} at {self.location}' 
+          else:
+            self.asked = True
+            return 'not enough money'
+    else:
+      return ''
+        
   def sell(self,player):
     player.money += self.price_paid
     player.properties.remove(self)
@@ -436,10 +452,16 @@ class game():
  
   def random_yearly_actions(self):
     check_history(self.history)
-    x = increment_npcs(self.player)
+    self.player.relationships= increment_npcs(self.player)
     self.jobs = generate_jobList()
     self.properties = generate_propertiesList()
     self.npcs=generate_npcs(self.player)
+    for property in self.player.properties:
+      if property.mortgage is True:
+        property.pay_mortgage(self.player)
+        property.check_if_defaulted(self.player)
+    
+    
 class Button():
     def __init__(self,image,x,y,scale):
         width = image.get_width()
@@ -575,7 +597,8 @@ def increment_npcs(player):
   for npc in player.relationships:
     npc.age+=1
     npc.health=round(npc.health*(random.uniform(0.6,1.4)))
-    return remove_dead_npc(player.relationships)
+  return player.relationships
+    
     
 
     
