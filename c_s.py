@@ -20,7 +20,7 @@ class Main_Character():
     self.grades = round(self.intelligence/0.85)
     self.attendance = 100
     self.experience=0
-    self.properties =[]
+    self.properties =[Property(),Property(),Property()]
     self.relationships = []
     self.significant_other = None
     self.married =False
@@ -350,6 +350,7 @@ class Property():
     self.years_left =25
     self.strikes = 3
     self.bought = False
+    self.mortgage = False
     self.asked = False
 
   def buy(self,player,mortgage):
@@ -361,6 +362,7 @@ class Property():
             player.money= player.money- self.price_paid
             self.asked = True
             self.bought= True
+            self.mortgage = True
             return f'you bought the {self.type} at {self.location}'
           else:
             self.asked = True
@@ -371,6 +373,7 @@ class Property():
             player.money= player.money-self.price_paid
             self.bought = True
             self.asked = True
+            self.mortgage = False
             return f'you bought the {self.type} at {self.location}' 
           else:
             self.asked = True
@@ -381,7 +384,7 @@ class Property():
   def sell(self,player):
     player.money += self.price_paid
     player.properties.remove(self)
-    return f'You sold your {self.type} on {self.location}'
+    print( f'You sold your {self.type} on {self.location}')
     
   def pay_mortgage(self,player):
     self.years_left += -1
