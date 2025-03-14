@@ -124,15 +124,20 @@ class Parent():
     self.relationship_level = random.randint(0,100)
     self.money = random.randint(100,10000)
     self.life = True
+    self.last_asked = -1
     if self.gender == 'male':
       self.relationship_type = 'Father'
     else:
       self.relationship_type = 'Mother'
-  def have_conversation(self):
-    conversation= random_choice(conversation_topics)
-    self.relationship_level += random.randint(-10,10)
-    self.change_relationship()
-    return f'You and {self.name} had a conversation about {conversation[0]}'
+  def have_conversation(self,player):
+    if player.age>self.last_asked:
+      conversation= random_choice(conversation_topics)
+      self.relationship_level += random.randint(-10,10)
+      self.change_relationship()
+      self.last_asked=player.age
+      return f'You and {self.name} had a conversation about {conversation}'
+    else:
+      return ''
   
   def check_health(self):
     health_check(self)
@@ -143,18 +148,23 @@ class Parent():
     money += random.randint(100,10000)
     self.check_health()
   
-  def ask_for_money(self):
-    if self.relationship_level >60:
-      money = random.randint(1,1000)
-      self.money -= money
-      self.relationship_level += random.randint(-10,1)
-      random_comment = 'insert comment here'
-      self.change_relationship()
-      return money,random_comment
+  def ask_for_money(self,player):
+    if player.age>self.last_asked:
+      if self.relationship_level >60:
+          money = random.randint(1,1000)
+          self.money -= money
+          self.relationship_level += random.randint(-10,1)
+          random_comment = (f'Your {self.relationship_type} gave you £{money}')
+          self.change_relationship()
+          self.last_asked=player.age
+          return random_comment
+      else:
+        self.relationship_level += random.randint(-30,1)
+        self.change_relationship()
+        self.last_asked=player.age
+        return (f'Your {self.relationship_type} says "stop asking for money"')
     else:
-      self.relationship_level += random.randint(-30,1)
-      self.change_relationship()
-      return 0, 'stop asking'
+      return ''
       
   def change_relationship(self):
     self.relationship_level=check_values (self.relationship_level,100,0)
@@ -171,12 +181,26 @@ class Sibling():
     self.life = True
     self.money = 0
     self.relationship_type = 'Sibling'
-  def have_conversation(self):
-    conversation= random_choice(conversation_topics)
-    self.relationship_level += random.randint(-10,10)
-    self.change_relationship()
-    return f'You and {self.name} had a conversation about {conversation[0]}'
-  
+    self.last_asked = -1
+  def have_conversation(self,player):
+    if player.age>self.last_asked:
+      conversation= random_choice(conversation_topics)
+      self.relationship_level += random.randint(-10,10)
+      self.change_relationship()
+      self.last_asked=player.age
+      return f'You and {self.name} had a conversation about {conversation}'
+    else:
+      return ''
+  def start_fight(self,player):
+    if player.age>self.last_asked:
+      if bool(random.getrandbits(1)) is True:
+        self.health += random.randint(-50,0)
+        player.health+=random.randint(-50,0)
+        return (F'You and {self.name} tussled')
+      else:
+        return (f'{self.name} doesn\'t want to fight you')
+    else:
+      return ''
   def check_health(self):
     health_check(self)
  
@@ -186,19 +210,24 @@ class Sibling():
     money += random.randint(100,10000)
     self.check_health()
   
-  def ask_for_money(self):
-    if self.age >= 18:
-      if self.relationship_level >60:
-        money = random.randint(1,1000)
-        self.money -= money
-        self.relationship_level += random.randint(-10,1)
-        random_comment = 'insert comment here'
+  def ask_for_money(self,player):
+    if player.age>self.last_asked:
+      if self.age >= 18:
+        if self.relationship_level >60:
+          money = random.randint(1,1000)
+          self.money -= money
+          self.relationship_level += random.randint(-10,1)
+          random_comment = (f'Your {self.relationship_type} gave you £{money}')
+          self.change_relationship()
+          self.last_asked=player.age 
+          return random_comment
+      else:
+        self.relationship_level += random.randint(-30,1)
         self.change_relationship()
-        return money,random_comment
+        self.last_asked=player.age
+        return (f'Your {self.relationship_type} says "stop asking for money"')
     else:
-      self.relationship_level += random.randint(-30,1)
-      self.change_relationship()
-      return 0, 'stop asking'
+      return ''
       
   def change_relationship(self):
     self.relationship_level=check_values (self.relationship_level,100,0)
@@ -356,7 +385,7 @@ class game():
     self.jobs = generate_jobList()
     self.properties = generate_propertiesList()
     self.schools = generate_schools()
-    self.npcs=generate_starting_npcs(self.player)
+    self.npcs=generate_npcs(self.player)
     self.player.relationships=generate_family(self.player)
     self.actions = 0
     self.history = []
@@ -373,13 +402,13 @@ class game():
     self.jobs = generate_jobList()
     self.properties = generate_propertiesList()
     self.npcs=remove_dead_npc(self.npcs)
-  def check_actions():
-    if action  >=5:
-      return False
-    else:
-      return True
-  def random_yearly_actions():
-    increment_npcs(self.npcs,self.player)
+ 
+  def random_yearly_actions(self):
+    check_history(self.history)
+    x = increment_npcs(self.player)
+    self.jobs = generate_jobList()
+    self.properties = generate_propertiesList()
+    self.npcs=generate_npcs(self.player)
 class Button():
     def __init__(self,image,x,y,scale):
         width = image.get_width()
@@ -501,17 +530,19 @@ def check_values(value,maxival,minival):
     return minival
   else:
     return value
-def remove_dead_npc(npc_list,player):
+def remove_dead_npc(npc_list):
   for npc in npc_list:
     if npc.check_health() is False:
+      death_announcment=f'{npc.name} {npc.surname} your {npc.relationship_type} has passed'
       npc_list.remove(npc)
-      generate_new_npc(player,npc_list)
+
+      return death_announcment
             
-def increment_npcs(npc_list,player):
-  for npc in npc_list:
+def increment_npcs(player):
+  for npc in player.relationships:
     npc.age+=1
     npc.health=round(npc.health*(random.uniform(0.6,1.4)))
-    remove_dead_npc(npc_list,player)
+    return remove_dead_npc(player.relationships)
     
 
     
@@ -541,8 +572,29 @@ def health_check(self):
 
 
 
+def check_response(r):
+  if len(r)> 5:
+    print('Gab')
+    return True
+  else:
+    print('Rab')
+    return False
+  
+def check_history(lst):
+  result = []
+  previous_empty = False
 
-
+  for item in lst:
+      if item != '':
+          result.append(item)
+          previous_empty = False
+      elif not previous_empty:
+          result.append(item)
+          previous_empty = True
+  return result
+      
+      
+        
 
 #found on github
 def wrap_text(text, font, width):

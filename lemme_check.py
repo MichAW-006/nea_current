@@ -10,7 +10,7 @@ BLACK = (0, 0, 0)
 selected_property = None
 # Player info
 
-
+find_property_button = pygame.Rect(600, 60, 150, 50)
 header_rect = pygame.Rect(0, 0, 800, 50)
 
 screen = pygame.display.set_mode((800, 600))
@@ -41,18 +41,15 @@ def draw_property_card(x, y, width, height, property):
     # Property location
     location_surface = Game.fonts[2].render(f"Location: {property.location}", True, BLACK)
     screen.blit(location_surface, (x + 10, y + 110))
-    # Buy button
-    buy_button = pygame.Rect(x + 10, y + height - 40, width - 20, 25)
-    mortgage_button = pygame.Rect(x + 10, y + height - 70, width - 20, 25)
-    pygame.draw.rect(screen, Game.colour_1, buy_button, border_radius=5)
-    pygame.draw.rect(screen, Game.colour_1, mortgage_button, border_radius=5)
-    buy_text = Game.fonts[2].render("Buy with cash", True, WHITE)
-    mort_text = Game.fonts[2].render("Apply for mortgage", True, WHITE)
-    screen.blit(buy_text, (x + 20, y + height - 35))
-    screen.blit(mort_text, (x + 20, y + height - 65))
+    # sell button
+    sell_button = pygame.Rect(x + 10, y + height - 40, width - 20, 25)
+    pygame.draw.rect(screen, Game.colour_1, sell_button, border_radius=5)
+    sell_text = Game.fonts[2].render("Sell this property", True, WHITE)
+    screen.blit(sell_text, (x + 20, y + height - 35))
 
 
-    return card_rect,buy_button,mortgage_button
+
+    return card_rect,sell_button
 
 def draw_progress_bar(x, y, value, max_value, width=200, height=20):
     pygame.draw.rect(screen, BLACK, (x, y, width, height), 2)  # Border
@@ -62,7 +59,8 @@ def draw_progress_bar(x, y, value, max_value, width=200, height=20):
 def draw_potential_property_screen():
     
     screen.fill(WHITE)
-    
+    pygame.draw.rect(screen, Game.colour_2, find_property_button)
+    screen.blit(Game.fonts[1].render('Find Properties',True,BLACK),(618,80))
     pygame.draw.rect(screen, Game.colour_1, header_rect)
     back_button.draw(screen)
     # Draw title
@@ -79,22 +77,18 @@ def draw_potential_property_screen():
     margin = 20
     properties_per_row = 3
 
-    for i, property in enumerate(Game.properties):
+    for i, property in enumerate(Game.player.properties):
         row = i // properties_per_row
         col = i % properties_per_row
         x = 50 + col * (card_width + margin)
         y = 100 + row * (card_height + margin)
-        card_rect,buy_button,mortgage_button = draw_property_card(x, y, card_width, card_height, property)
+        card_rect,sell_button = draw_property_card(x, y, card_width, card_height, property)
 
         # Handle buy button clicks
         mouse_pos = pygame.mouse.get_pos()
-        if buy_button.collidepoint(mouse_pos):
+        if sell_button.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0]: # Left mouse button
                 property.buy(Game.player,False)
-                
-        elif mortgage_button.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0]:  # Left mouse button
-                property.buy(Game.player,True)
                 
 
         

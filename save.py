@@ -56,8 +56,6 @@ school_button = Button(pygame.image.load('school.PNG').convert_alpha(),10,450,0.
 property_button = Button(pygame.image.load('property.PNG').convert_alpha(),140,495,0.27)
 relationships_button = Button(pygame.image.load('relationships.PNG').convert_alpha(),250,450,0.3)
 
-
-
 selected_job = None
 selected_player_property= None
 selected_relationship = None
@@ -80,6 +78,16 @@ def draw_start_up_screen():
     
 def draw_main_screen():
     screen.fill(WHITE)
+    global selected_job
+    global selected_player_property
+    global selected_relationship
+    global selected_npc
+    global selected_property
+    selected_job = None
+    selected_player_property= None
+    selected_relationship = None
+    selected_npc = None
+    selected_property = None
 
     pygame.draw.rect(screen, Game.colour_1, header_rect)
     pygame.draw.rect(screen, Game.colour_1, stats_rect)
@@ -117,7 +125,7 @@ def draw_main_screen():
     screen.blit(Game.fonts[1].render(f"Smarts: {Game.player.intelligence}%", True, BLACK), (630, 170))
 
     y_offset = 80
-    for event_text in Game.history[-5:]:
+    for event_text in Game.history[-10:]:
         screen.blit(render_text_list(wrap_text(event_text,Game.fonts[1],400),Game.fonts[1],BLACK), (10, y_offset))
         y_offset += 20
         
@@ -187,21 +195,83 @@ def display_potential_relationships(npc):
     screen.blit(Game.fonts[0].render("Ask to date", True, WHITE), (ask_to_date_button.x + 10, ask_to_date_button.y + 15))
 
 
-def draw_potential_properties_screen():
-    screen.fill(WHITE)
+def draw_property_card(x, y, width, height, property):
+    card_rect = pygame.Rect(x, y, width, height)
+    pygame.draw.rect(screen, Game.colour_3, card_rect, border_radius=10)
 
+    # Property name
+    name_surface = Game.fonts[0].render(property.type, True, BLACK)
+    screen.blit(name_surface, (x + 10, y + 10))
+
+    # Property price
+
+    price_surface = Game.fonts[2].render(f"Price: ${property.price:,}", True, BLACK)
+    screen.blit(price_surface, (x + 10, y + 50))
+
+    # Property condition
+    draw_progress_bar(x + 80, y + 80, property.condition, 100,100,10)
+    condition_text = Game.fonts[2].render("Condition:", True, BLACK)
+    condition_number =Game.fonts[2].render(f"{property.condition}%", True, BLACK)
+    screen.blit(condition_text, (x + 10, y + 80))
+    screen.blit(condition_number, (x + 183, y + 80))
+
+
+    # Property location
+    location_surface = Game.fonts[2].render(f"Location: {property.location}", True, BLACK)
+    screen.blit(location_surface, (x + 10, y + 110))
+    # Buy button
+    buy_button = pygame.Rect(x + 10, y + height - 40, width - 20, 25)
+    mortgage_button = pygame.Rect(x + 10, y + height - 70, width - 20, 25)
+    pygame.draw.rect(screen, Game.colour_1, buy_button, border_radius=5)
+    pygame.draw.rect(screen, Game.colour_1, mortgage_button, border_radius=5)
+    buy_text = Game.fonts[2].render("Buy with cash", True, WHITE)
+    mort_text = Game.fonts[2].render("Apply for mortgage", True, WHITE)
+    screen.blit(buy_text, (x + 20, y + height - 35))
+    screen.blit(mort_text, (x + 20, y + height - 65))
+
+
+    return card_rect,buy_button,mortgage_button
+
+def draw_potential_properties_screen():
+    
+    screen.fill(WHITE)
+    
     pygame.draw.rect(screen, Game.colour_1, header_rect)
     back_button.draw(screen)
+    # Draw title
+    title_surface = Game.fonts[0].render("Available Properties", True, BLACK)
+    screen.blit(title_surface, (50, 20))
 
-    i=0
-    for property in property_buttons:
-        pygame.draw.rect(screen, Game.colour_1, property)
-        screen.blit(Game.fonts[0].render(f"{Game.properties[i].type}  ", True, BLACK), (property.x + 10, property.y + 10))
-        i+=1
+    # Draw player money
+    money_surface = Game.fonts[2].render(f"Money: ${Game.player.money}", True, BLACK)
+    screen.blit(money_surface, (800 - 200, 20))
+
+    # Draw property cards
+    card_width = 210
+    card_height = 220
+    margin = 20
+    properties_per_row = 3
+
+    for i, property in enumerate(Game.properties):
+        row = i // properties_per_row
+        col = i % properties_per_row
+        x = 50 + col * (card_width + margin)
+        y = 100 + row * (card_height + margin)
+        card_rect,buy_button,mortgage_button = draw_property_card(x, y, card_width, card_height, property)
+
+        # Handle buy button clicks
+        mouse_pos = pygame.mouse.get_pos()
+        if buy_button.collidepoint(mouse_pos):
+            if pygame.mouse.get_pressed()[0]: # Left mouse button
+                property.buy(Game.player,False)
+                return True
+                
+        elif mortgage_button.collidepoint(mouse_pos):
+            if pygame.mouse.get_pressed()[0]:  # Left mouse button
+                property.buy(Game.player,True)
+                return True
         
-    if selected_property is not None:
-        display_potential_properties(selected_property)
-
+                
 def draw_potential_jobs_screen():
     screen.fill(WHITE)
 
@@ -230,6 +300,7 @@ while running:
 
     # Draw the appropriate screen based on game state
     if current_screen == "main":
+        Game.history=check_history(Game.history)
         draw_main_screen()
         
     elif current_screen == "relationships":
@@ -275,7 +346,7 @@ while running:
                     Game.player.choice_results('c',choices)
                     make_choice = False
                 elif property_button.rect.collidepoint(mouse_pos):
-                    current_screen = "properties"  # Switch to properties screen
+                    current_screen = "potential properties"  # Switch to properties screen
                 elif relationships_button.rect.collidepoint(mouse_pos):
                     current_screen = "relationships"  # Switch to relationships screen
                 elif school_button.rect.collidepoint(mouse_pos):
@@ -289,23 +360,30 @@ while running:
                 if new_game_button.rect.collidepoint(mouse_pos):
                     current_screen = "main"  # Switch to properties screen
             
-
-            
+            elif current_screen == 'potential properties':
+                if draw_potential_properties_screen() is True:
+                   current_screen = "main"
             elif current_screen == "relationships":
+              
+              if back_button.rect.collidepoint(mouse_pos):
+                current_screen = "main"
               for i,btn in enumerate(relationship_buttons):
                 if btn.collidepoint(mouse_pos):
                   selected_relationship = Game.player.relationships[i]
                   break
                 if selected_relationship is not None:
                   if ask_for_money_button.collidepoint(mouse_pos):
-                    selected_relationship.ask_for_money()    
-                    Game.actions+=1                   
+                    response = selected_relationship.ask_for_money(Game.player)
+                    Game.history.append(response)
+                    current_screen = "main"
                   if conversate_button.collidepoint(mouse_pos):
-                    selected_relationship.have_conversation()
-                    Game.actions+=1 
+                    response = selected_relationship.have_conversation(Game.player)
+                    Game.history.append(response)
+                    current_screen = "main"
                   if start_fight_button.collidepoint(mouse_pos):
-                    selected_relationship.start_fight()    
-                    Game.actions+=1                   
+                    Game.history.append(selected_relationship.start_fight(Game.player) )  
+                    Game.history.append('')
+                    current_screen = "main"
               if make_new_relationships_button.collidepoint(mouse_pos):
                 current_screen = "potential relationships"
         
@@ -325,14 +403,7 @@ while running:
                     if selected_npc.be_friends() is True:
                       Game.player.relationships.append(selected_npc)
 
-            elif current_screen == 'potential jobs':
-                 for i,btn in enumerate(job_buttons):
-                    if btn.collidepoint(mouse_pos):
-                        selected_job = Game.jobs[i]
-                        break
-                    if selected_job is not None:
-                        if button.collidepoint(mouse_pos):
-                            selected_job.apply(Game.player) 
+
             elif current_screen in ["relationships","properties",'school','work','job']:
                 if back_button.rect.collidepoint(mouse_pos):
                     current_screen = "main"  # Go back to the main screen
