@@ -63,49 +63,60 @@ class Npc():
     self.relationship_type = None
     self.money = random.randint(100,10000)
     
-  def have_conversation(self):
-    conversation= random_choice(conversation_topics)
-    self.relationship_level += random.randint(-10,10)
-    self.change_relationship()
-    return f'You and {self.name} had a conversation about {conversation[0]}'
-  
-  def check_health(self):
-    health_check(self)
-    
-  def to_date(self):
-    if self.married ==False:
-      if bool(random.getrandbits(1)) == True:
-        self.relationship_type = 'Significant Other'
-        return True
+  def have_conversation(self,player):
+    if player.age>self.last_asked:
+      conversation= random_choice(conversation_topics)
+      self.relationship_level += random.randint(-10,10)
+      self.change_relationship()
+      self.last_asked=player.age
+      return f'You and your {self.relationship_type}, {self.name} had a conversation about {conversation}'
     else:
-      return False
+      return ''
+      
+  def ask_for_money(self,player):
+    if player.age>self.last_asked:
+      if self.relationship_level >60:
+          money = random.randint(1,1000)
+          self.money -= money
+          player.money += money 
+          self.relationship_level += random.randint(-10,1)
+          random_comment = (f'Your {self.relationship_type} gave you £{money}')
+          self.change_relationship()
+          self.last_asked=player.age
+          return random_comment
+      else:
+        self.relationship_level += random.randint(-30,1)
+        self.change_relationship()
+        self.last_asked=player.age
+        return (f'Your {self.relationship_type} says "stop asking for money"')
+    else:
+      return ''
+      
+  def to_date(self,player):
+    if self.married ==False and player.significant_other == None:
+      if bool(random.getrandbits(1)) == True:
+        if self.gender == 'male':
+          self.relationship_type = 'Boyfriend'
+        else:
+          self.relationship_type = 'Girlfriend'
+        player.relationships.append(self)
+        player.significant_other = self
+        return f'{self.name} {self.surname} has agreed to be your {self.relationship_type}'
+    else:
+      return ''
 
-  def be_friends(self):
+  def be_friends(self,player):
     if bool(random.getrandbits(1)) == True:
         self.relationship_type = 'Friend'
-        return True
+        player.relationships.append(self)
+        return f'{self.name} {self.surname} has agreed to be your {self.relationship_type}'
     else:
       return False
         
- 
-  def age_up(self):
-    self.age+=1
-    self.health = round(self.health*(random.uniform(0.6,1.4))) 
-    money += random.randint(100,10000)
-    self.check_health()
+
+  def check_health(self):
+    health_check(self)
   
-  def ask_for_money(self):
-    if self.relationship_level >60:
-      money = random.randint(1,1000)
-      self.money -= money
-      self.relationship_level += random.randint(-10,1)
-      random_comment = 'insert comment here'
-      self.change_relationship()
-      return money,random_comment
-    else:
-      self.relationship_level += random.randint(-30,1)
-      self.change_relationship()
-      return 0, 'stop asking'
       
   def change_relationship(self):
     self.relationship_level=check_values (self.relationship_level,100,0)
@@ -135,26 +146,17 @@ class Parent():
       self.relationship_level += random.randint(-10,10)
       self.change_relationship()
       self.last_asked=player.age
-      return f'You and {self.name} had a conversation about {conversation}'
+      return f'You and Your {self.relationship_type}, {self.name} had a conversation about {conversation}'
     else:
       return ''
-  
-  def check_health(self):
-    health_check(self)
- 
-  def age_up(self):
-    self.age+=1
-    self.health = round(self.health*(random.uniform(0.6,1.4))) 
-    money += random.randint(100,10000)
-    self.check_health()
-  
   def ask_for_money(self,player):
     if player.age>self.last_asked:
       if self.relationship_level >60:
           money = random.randint(1,1000)
           self.money -= money
+          player.money += money
           self.relationship_level += random.randint(-10,1)
-          random_comment = (f'Your {self.relationship_type} gave you £{money}')
+          random_comment = (f'Your {self.relationship_type}, {self.name} gave you £{money}')
           self.change_relationship()
           self.last_asked=player.age
           return random_comment
@@ -162,9 +164,11 @@ class Parent():
         self.relationship_level += random.randint(-30,1)
         self.change_relationship()
         self.last_asked=player.age
-        return (f'Your {self.relationship_type} says "stop asking for money"')
+        return (f'Your {self.relationship_type}, {self.name} says "stop asking for money"')
     else:
       return ''
+  def check_health(self):
+    health_check(self)
       
   def change_relationship(self):
     self.relationship_level=check_values (self.relationship_level,100,0)
@@ -182,21 +186,42 @@ class Sibling():
     self.money = 0
     self.relationship_type = 'Sibling'
     self.last_asked = -1
+    
   def have_conversation(self,player):
     if player.age>self.last_asked:
       conversation= random_choice(conversation_topics)
       self.relationship_level += random.randint(-10,10)
       self.change_relationship()
       self.last_asked=player.age
-      return f'You and {self.name} had a conversation about {conversation}'
+      return f'You and your {self.relationship_type}, {self.name} had a conversation about {conversation}'
     else:
       return ''
+      
+  def ask_for_money(self,player):
+    if player.age>self.last_asked:
+      if self.relationship_level >60:
+          money = random.randint(1,1000)
+          self.money -= money
+          player.money += money
+          self.relationship_level += random.randint(-10,1)
+          random_comment = (f'Your {self.relationship_type}, {self.name} gave you £{money}')
+          self.change_relationship()
+          self.last_asked=player.age
+          return random_comment
+      else:
+        self.relationship_level += random.randint(-30,1)
+        self.change_relationship()
+        self.last_asked=player.age
+        return (f'Your {self.relationship_type}, {self.name} says "stop asking for money"')
+    else:
+      return ''
+      
   def start_fight(self,player):
     if player.age>self.last_asked:
       if bool(random.getrandbits(1)) is True:
         self.health += random.randint(-50,0)
         player.health+=random.randint(-50,0)
-        return (F'You and {self.name} tussled')
+        return (f'You and {self.name} tussled')
       else:
         return (f'{self.name} doesn\'t want to fight you')
     else:
@@ -209,26 +234,7 @@ class Sibling():
     self.health = round(self.health*(random.uniform(0.6,1.4))) 
     money += random.randint(100,10000)
     self.check_health()
-  
-  def ask_for_money(self,player):
-    if player.age>self.last_asked:
-      if self.age >= 18:
-        if self.relationship_level >60:
-          money = random.randint(1,1000)
-          self.money -= money
-          self.relationship_level += random.randint(-10,1)
-          random_comment = (f'Your {self.relationship_type} gave you £{money}')
-          self.change_relationship()
-          self.last_asked=player.age 
-          return random_comment
-      else:
-        self.relationship_level += random.randint(-30,1)
-        self.change_relationship()
-        self.last_asked=player.age
-        return (f'Your {self.relationship_type} says "stop asking for money"')
-    else:
-      return ''
-      
+    
   def change_relationship(self):
     self.relationship_level=check_values (self.relationship_level,100,0)
     
@@ -247,7 +253,6 @@ class Job():
       self.skill_required = random.randint(20,60)
         
   def promote(self,player):
-    
     if self.work_ethic>60:
       if 'Junior' or 'Apprentice' in self.title:
         self.salary += random.randint(1000,9000)
@@ -267,9 +272,31 @@ class Job():
 
   def work(self,player):
     self.work_ethic+=random.randint(1,7)
+    self.work_ethic=check_values(self.work_ethic,100,0)
     player.mood += random.randint(-10,5)
     player.intelligence += random.randint(-5,5)
     player.health+= self.work_life_balance*random.randint(-5,0)
+    
+  def quit_job(self,player):
+    text = f'You quit working as a {self.title} at {self.work_place}'
+    player.job= None
+    return text
+    
+  def apply_for_job(self,player):
+    if self.asked is False:
+      if ( player.education is in self.education) and (player.skill >= self.skill_required) and (player.experience >=self.experience_required):
+        if player.job is not None:
+          text = f'You quit working at {player.job.work_place} to work as a {self.title} at {self.work_place}'
+          player.job= self
+          return text
+        else:
+          player.job= self
+          return f'You got the {self.title} job at {self.work_place}'
+      else:
+        return f'You did not get the {self.title} job'
+    else:
+      return ''
+  
   
   def check_maxxed(self):
     if self.work_ethic>100:
@@ -337,8 +364,10 @@ class Property():
           
   def sell(self,player):
     player.money += self.price_paid
+    player.properties.remove(self)
+    return f'You sold your {self.type} on {self.location}'
     
-  def pay_mortagage(self,player):
+  def pay_mortgage(self,player):
     self.years_left += -1
     left_to_pay =self.price-self.price_paid
     if player.money >= (left_to_pay)/25:
@@ -346,9 +375,11 @@ class Property():
       return left_to_pay/25
     else:
       self.strikes+=-1
-  def check_if_defaulted(self):
+      
+  def check_if_defaulted(self,player):
     if self.strikes == 0:
-      pass
+      player.properties.remove(self)
+      return f'The bank reclaimed your {self.type} on {self.location}'
       
 
 class School:
@@ -446,6 +477,8 @@ def create_job(self,Type):
   self.title=Type + ' ' + random_job[0]
   self.education = random_job[1:len(random_job)]# sets the education required for the job
   self.work_ethic = 100
+  self.work_place = random_choice(last_names) +' '+ random_choice(business_suffixes)
+  self.asked = False
   self.work_life_balance = random.randint(1,10)
   if self.education[0] == 'None' and Type == 'Junior':
     self.title='Apprentice' + ' ' + random_job[0]
