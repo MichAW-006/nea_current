@@ -111,7 +111,7 @@ class Npc():
         player.relationships.append(self)
         return f'{self.name} {self.surname} has agreed to be your {self.relationship_type}'
     else:
-      return False
+      return ''
         
 
   def check_health(self):
