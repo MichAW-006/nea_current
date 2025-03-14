@@ -10,6 +10,9 @@ BLACK = (0, 0, 0)
 selected_property = None
 # Player info
 
+sell_buttons = [pygame.Rect((x + 10, y + height - 40, width - 20, 25)) for i in range(len(Game.P))]
+global x
+global y
 
 header_rect = pygame.Rect(0, 0, 800, 50)
 
@@ -44,7 +47,7 @@ def draw_owned_property_card(x, y, width, height, property):
     # Sell button
     sell_button = pygame.Rect(x + 10, y + height - 40, width - 20, 25)
     pygame.draw.rect(screen, Game.colour_1, sell_button, border_radius=5)
-    sell_text = Game.fonts[2].render("Buy with cash", True, WHITE)
+    sell_text = Game.fonts[2].render("Sell this", True, WHITE)
     screen.blit(sell_text, (x + 20, y + height - 35))
     
 
@@ -58,9 +61,10 @@ def draw_progress_bar(x, y, value, max_value, width=200, height=20):
 def draw_property_screen():
 
     screen.fill(WHITE)
-    
-    pygame.draw.rect(screen, Game.colour_1, pygame.Rect(600, 80, 150, 50))
-    screen.blit(Game.fonts[1].render("Find Properties", True, BLACK),(610,95))
+    pressed = False
+    find_button = pygame.Rect(600, 60, 150, 35)
+    pygame.draw.rect(screen, Game.colour_1, find_button)
+    screen.blit(Game.fonts[1].render("Find Properties", True, BLACK),(613,72))
     
     pygame.draw.rect(screen, Game.colour_1, header_rect)
     back_button.draw(screen)
@@ -76,20 +80,16 @@ def draw_property_screen():
     card_width = 210
     card_height = 220
     margin = 20
-    properties_per_row = 3
-
+    
     for i, property in enumerate(Game.player.properties):
-        row = i // properties_per_row
-        col = i % properties_per_row
+        row = i // 3
+        col = i % 3
         x = 50 + col * (card_width + margin)
         y = 100 + row * (card_height + margin)
         card_rect,sell_button = draw_owned_property_card(x, y, card_width, card_height, property)
 
-        # Handle sell button clicks
-        mouse_pos = pygame.mouse.get_pos()
-        if sell_button.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0]: # Left mouse button
-                property.sell(Game.player,False)
+
+    
 
 
 
@@ -100,6 +100,18 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.MOUSEBUTTONUP:
+          mouse_pos = pygame.mouse.get_pos()
+          # Handle sell button clicks
+          for sell_button in sell_buttons:
+            if sell_button.collidepoint(mouse_pos):
+                if pygame.mouse.get_pressed()[0]: # Left mouse button
+                    property.sell(Game.player)
+
+        
+              
+
+
 
 
 
