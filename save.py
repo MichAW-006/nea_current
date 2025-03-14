@@ -83,6 +83,8 @@ def draw_main_screen():
     global selected_relationship
     global selected_npc
     global selected_property
+    global relationship_buttons
+    relationship_buttons = [pygame.Rect(20, 80 + (i * 50), 300, 40) for i in range(len(Game.player.relationships))]
     selected_job = None
     selected_player_property= None
     selected_relationship = None
@@ -263,12 +265,12 @@ def draw_potential_properties_screen():
         mouse_pos = pygame.mouse.get_pos()
         if buy_button.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0]: # Left mouse button
-                property.buy(Game.player,False)
+                Game.history.append(property.buy(Game.player,False))
                 return True
                 
         elif mortgage_button.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0]:  # Left mouse button
-                property.buy(Game.player,True)
+                Game.history.append(property.buy(Game.player,True))
                 return True
         
                 
@@ -330,10 +332,11 @@ while running:
             if current_screen == "main":
                 draw_main_screen()
                 if age_up_button.rect.collidepoint(mouse_pos):
+                    Game.random_yearly_actions()
                     Game.player.age += 1
                     Game.history.append(f"Age {Game.player.age-1}: {choices[0]}")
                     Game.history.append('')
-                    aging_cycle(Game.player)
+                    
                     make_choice = True
                     choices =show_choices_and_option(check_available_choices(Game.player))
                 elif choice_buttons[0].collidepoint(mouse_pos) and make_choice == True:
@@ -396,12 +399,11 @@ while running:
                   break
                 if selected_npc is not None:
                   if ask_to_date_button.collidepoint(mouse_pos):
-                    if selected_npc.to_date() is True:
-                      Game.player.relationships.append(selected_npc)
-                      Game.actions+=1                   
+                    Game.history.append(selected_npc.to_date(Game.player))
+                    current_screen = "main"       
                   if ask_to_be_friends_button.collidepoint(mouse_pos):
-                    if selected_npc.be_friends() is True:
-                      Game.player.relationships.append(selected_npc)
+                    Game.history.append( selected_npc.be_friends(Game.player))
+                    current_screen = "main"
 
 
             elif current_screen in ["relationships","properties",'school','work','job']:
